@@ -86,7 +86,7 @@ class speech_and_say:
         # tất cả các text từ đầu đến cuối em ghi vào để chạy thử thôi
         while(self.ok != 0):
             text = self.speech_with_pause();
-            if('On' or 'on' in text):
+            if('On' or 'on' or 'bật' in text):
                 self.say();
                 break
             
