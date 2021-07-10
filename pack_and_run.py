@@ -5,10 +5,8 @@ import time,os,string
 import playsound
 from gtts import gTTS 
 
-# sau này chúng ta sẽ phát triển cái database riêng
-# cái này thì chúng ta sẽ cho những cái text có nội dung tương tự
-# ở trong database vào 1 cách ngẫu nhiên
-# tất cả các text từ đầu đến cuối em ghi vào để chạy thử thôi
+# sau này chúng ta sẽ phát triển cái database riêng chứa các nội dung text
+# phát triển chương trình sau random text đồng nghĩa phù hợp 
 
 class speech_and_say:
     def init(self):
@@ -80,10 +78,10 @@ class speech_and_say:
             schedule.hour.do(self.say_VN_by_Microsoft(speech_time_up + self.name) and change)
 
         schedule.run_pending()
-        # sau này chúng ta sẽ phát triển cái database riêng
-        # cái này thì chúng ta sẽ cho những cái text có nội dung tương tự
-        # ở trong database vào 1 cách ngẫu nhiên
-        # tất cả các text từ đầu đến cuối em ghi vào để chạy thử thôi
+
+        # sau này chúng ta sẽ phát triển cái database riêng chứa các nội dung text
+		# phát triển chương trình sau random text đồng nghĩa phù hợp 
+		
         while(self.ok != 0):
             text = self.speech_with_pause();
             if('On' or 'on' or 'bật' in text):
