@@ -4,6 +4,12 @@ import schedule
 import time,os,string
 import playsound
 from gtts import gTTS 
+
+# sau này chúng ta sẽ phát triển cái database riêng
+# cái này thì chúng ta sẽ cho những cái text có nội dung tương tự
+# ở trong database vào 1 cách ngẫu nhiên
+# tất cả các text từ đầu đến cuối em ghi vào để chạy thử thôi
+
 class speech_and_say:
     def init(self):
         name = ''
