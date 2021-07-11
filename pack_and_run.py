@@ -60,7 +60,7 @@ class speech_and_say:
             text = ""
         return text
 
-    def say(text):
+    def say(self,text):
         e = pyttsx3.init();
         e.say(text)
         e.runAndWait()
@@ -87,6 +87,8 @@ class speech_and_say:
             if('On' or 'on' or 'bật' in text):
                 self.say();
                 break
+            elif('Tắt' or 'off' or 'off' in text):
+            	exit()
             
             
 
