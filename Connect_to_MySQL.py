@@ -16,7 +16,7 @@ my_process = mydb.cursor()
 # my_process.execute("SELECT * FROM app_and_web")
 
 
-fomula = "INSERT INTO app_and_web (ID,NAME,TYPE,URL) VALUES (%s,%s,%s,%s)"
+fomula = "INSERT INTO database_web_and_app (ID,NAME,TYPE,URL) VALUES (%s,%s,%s,%s)"
 f = open('text.txt','r',encoding="utf8")
 lines = f.readlines()
 cnt = 1
