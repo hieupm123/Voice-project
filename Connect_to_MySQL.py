@@ -7,7 +7,7 @@ mydb = mysql.connector.connect(
 	passwd = "",
 	database="app_and_web"
 )
-   
+  
 #printing the connection object
 
 my_process = mydb.cursor()
