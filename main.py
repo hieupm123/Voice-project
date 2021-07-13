@@ -6,3 +6,4 @@ test = speech_and_say()
 text = test.speech_none_pause()
 test.say_VN_by_Microsoft(text)
 # test.say_VN_by_Google(text)
+#asdasdasdasdasdasd
