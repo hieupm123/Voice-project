@@ -1,14 +1,5 @@
 # from pack_and_run import speech_and_say
 from Hardware_PC import Hardware
-# test = speech_and_say()
-
-# test.say('Hello')
-# test.say_VN_by_Microsoft("")
-# text = test.speech_none_pause()
-# test.say_VN_by_Microsoft(text)
-# test.say_VN_by_Google(text)
-#asdasdasdasdasda
-import pyautogui
 # while(1):
 # 	pyautogui.press("volumeup")
 # 	test = Hardware()
@@ -18,17 +9,12 @@ import pyautogui
 # 	f.close()
 # 	if(test.change_volume(2) == 0.0):
 # 		break
-
-test = Hardware()
-test.change_volume(2,21)
-
+I = Hardware()
+I.unikey(0)
 
 
-# import osascript
 
-# osascript.osascript("set volume output volume 100")
-# test = Hardware()
-# test.change_volume(1)
+
 
 
 
