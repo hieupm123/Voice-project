@@ -7,7 +7,7 @@ import sys
 from datetime import datetime
 import psutil
 import screen_brightness_control as sbc
-from pack_and_run import os,time
+from pack_and_run import os,time,schedule
 
 # Lấy thông số volume từ file in_volume.txt
 file_volume = open("in_volume.txt",'r')
