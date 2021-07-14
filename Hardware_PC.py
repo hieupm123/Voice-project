@@ -3,11 +3,11 @@ from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 import math
 import pyautogui
-import os,sys
-import time
+import sys
 from datetime import datetime
 import psutil
 import screen_brightness_control as sbc
+from pack_and_run import os,time
 
 # Lấy thông số volume từ file in_volume.txt
 file_volume = open("in_volume.txt",'r')
@@ -114,14 +114,3 @@ class Hardware:
 			sbc.set_brightness(str(light))
 
 		locals()[func]()
-
-
-
-
-
-
-
-
-
-
-		
