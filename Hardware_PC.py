@@ -24,7 +24,7 @@ file_volume.close()
 # thì chúng ta sẽ gọi hàm = srt
 
 class Hardware:
-	# Hàm cho phép tắt phần mềm = task_manager
+	# Hàm cho phép tắt phần mềm = task_manager	
 	def killer(self,process_name):
 		os.system('taskkill /f /im ' + process_name)
 
@@ -110,8 +110,8 @@ class Hardware:
 		def screen_brightness_down(light = '-10'):
 			sbc.set_brightness(light)
 
-		def screen_brightness_set((str)light):
-			sbc.set_brightness(light)
+		def screen_brightness_set(light):
+			sbc.set_brightness(str(light))
 
 		locals()[func]()
 
