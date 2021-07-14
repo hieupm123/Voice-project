@@ -34,3 +34,7 @@ sbc.set_brightness('+10')
 =======
 # ádasdasdasdasdas
 >>>>>>> f795287997f97e7bb79b15cea99fff233becea7f
+
+
+
+#bo
