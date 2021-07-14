@@ -29,3 +29,4 @@ sbc.set_brightness('+10')
 
 
 # Hieu sua
+# ádasdasdasdasdas
