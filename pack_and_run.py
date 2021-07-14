@@ -78,9 +78,6 @@ class speech_and_say:
             schedule.hour.do(self.say_VN_by_Microsoft(speech_time_up + self.name) and change)
 
         schedule.run_pending()
-
-        # sau này chúng ta sẽ phát triển cái database riêng chứa các nội dung text
-		# phát triển chương trình sau random text đồng nghĩa phù hợp 
 		
         while(self.ok != 0):
             text = self.speech_with_pause();
