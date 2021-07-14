@@ -29,4 +29,8 @@ sbc.set_brightness('+10')
 
 
 # Hieu sua
+<<<<<<< HEAD
 # jkfksfsdkjkfs
+=======
+# ádasdasdasdasdas
+>>>>>>> f795287997f97e7bb79b15cea99fff233becea7f
