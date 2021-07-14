@@ -37,4 +37,8 @@ sbc.set_brightness('+10')
 
 
 
+<<<<<<< HEAD
 # hieu
+=======
+#bo
+>>>>>>> d52dc2d669463c9b2c549ecfc6ba0a077326c13f
