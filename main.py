@@ -14,8 +14,14 @@ import os
 import sys
 import wmi
 import screen_brightness_control as sbc
-sbc.set_brightness('+10')
-	
+from pyfacebook import GraphAPI
+from selenium import webdriver
+driver = webdriver.Chrome("./chromedriver.exe")
+driver.get("https://selenium-python.readthedocs.io/navigating.html#interacting-with-the-page")
+# api = GraphAPI(access_token="token")
+# friends = api.get_object("me/friends")
+# for friend in friends['data']:
+#     print ("{0} has id {1}".format(friend['name'].encode('utf-8'), friend['id']))
 	
 # from __future__ import print_function
 
@@ -29,16 +35,13 @@ sbc.set_brightness('+10')
 
 
 # Hieu sua
-<<<<<<< HEAD
+
 # jkfksfsdkjkfs
-=======
+
 # ádasdasdasdasdas
->>>>>>> f795287997f97e7bb79b15cea99fff233becea7f
 
 
-
-<<<<<<< HEAD
 # hieu
-=======
+
 #bo
->>>>>>> d52dc2d669463c9b2c549ecfc6ba0a077326c13f
+
