@@ -1,14 +1,5 @@
 from pack_and_run import speech_and_say
 from Hardware_PC import Hardware
-# while(1):
-# 	pyautogui.press("volumeup")
-# 	test = Hardware()
-# 	f = open('out.txt','a')
-# 	f.write(str(test.change_volume(2)))
-# 	f.write("\n")
-# 	f.close()
-# 	if(test.change_volume(2) == 0.0):
-# 		break
 import psutil
 import os
 import sys
@@ -16,32 +7,61 @@ import wmi
 import screen_brightness_control as sbc
 from pyfacebook import GraphAPI
 from selenium import webdriver
-driver = webdriver.Chrome("./chromedriver.exe")
-driver.get("https://selenium-python.readthedocs.io/navigating.html#interacting-with-the-page")
-# api = GraphAPI(access_token="token")
-# friends = api.get_object("me/friends")
-# for friend in friends['data']:
-#     print ("{0} has id {1}".format(friend['name'].encode('utf-8'), friend['id']))
-	
-# from __future__ import print_function
-
-# def get_cpu_temp():
-#     t = psutil.sensors_temperatures()
-#     for x in ['cpu-thermal', 'cpu_thermal']:
-#         if x in t:
-#             return t[x][0].current
-#     print("Warning: Unable to get CPU temperature!")
-#     return 0 
+import time
+import pyautogui
+from selenium.webdriver.chrome.options import Options
 
 
-# Hieu sua
+import js2py
 
-# jkfksfsdkjkfs
+# lay thong tin web khong can truy cap = js or selenium with js
 
-# ádasdasdasdasdas
+# js = """
+# function escramble_758(){
+# var a,b,c
+# a = 1
+# b = 2
+# c = 3
+# return a + b + c
+# }
+# escramble_758()
+# """.replace("document.write", "return ")
+
+# result = js2py.eval_js(js)
+# print(result)
+
+test = Hardware();
 
 
-# hieu
+# options = webdriver.ChromeOptions()
+# options.add_argument(r"C:\Users\OOP\AppData\Local\Google\Chrome\User Data\Profile 2")
+# driver = webdriver.Chrome(executable_path=r'./chromedriver.exe',chrome_options=options)
+# driver.get("https://www.lambdatest.com/blog/selenium-with-python/
 
-#bo
+
+
+
+# lay frofile
+# options = webdriver.ChromeOptions()
+# options.add_argument("user-data-dir=C:\\Users\\OOP\\AppData\\Local\\Google\\Chrome\\User Data\\Default")
+# driver = webdriver.Chrome(executable_path=r'./chromedriver.exe', chrome_options=options)
+# driver.get("https://www.google.com")
+# time.sleep(4)
+# driver.maximize_window()
+
+
+# driver.find_element_by_xpath("/html/body/div[3]/div/div/div/div[1]/div/div[3]/a[2]")
+# to fire up a new tab using javascript and load google.com
+# driver.execute_script('''window.open("https://www.google.com", "_blank");''') # tạo mới 1 tab
+# driver.switch_to.window(driver.window_handles[0]) # chuyen tab
+# titles = driver.title
+
+# pyautogui.press('f6')
+# pyautogui.hotkey('ctrl', 'c') # for copying the selected url
+# import pyperclip # pip install pyperclip required
+# url = pyperclip.paste()
+# print(url)
+# print(titles)
+
+# driver.quit()
 

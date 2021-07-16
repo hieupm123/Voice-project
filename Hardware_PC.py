@@ -9,22 +9,25 @@ import psutil
 import screen_brightness_control as sbc
 from pack_and_run import os,time,schedule
 
-# Lấy thông số volume từ file in_volume.txt
-file_volume = open("in_volume.txt",'r')
-lines_volume = file_volume.readlines()
-M_volume = {}
-index_volume = 0
-for a in range(0,len(lines_volume)):
-	lines_volume[a].replace("\n","")
-	M_volume[index_volume] = float(lines_volume[a])
-	index_volume += 2
-file_volume.close()	
-
 # Note: Tất cả các hàm và class có thể gọi = str nên nếu chắc năng nào cần viết nhiều hàm
 # thì chúng ta sẽ gọi hàm = srt
 
 class Hardware:
 	# Hàm cho phép tắt phần mềm = task_manager	
+	def __init__(self):
+		# Thông số volume
+		self.file_volume = open("in_volume.txt",'r')
+		self.lines_volume = self.file_volume.readlines()
+		self.M_volume = {}
+		self.index_volume = 0
+		for a in range(0,len(self.lines_volume)):
+			self.lines_volume[a].replace("\n","")
+			self.M_volume[self.index_volume] = float(self.lines_volume[a])
+			self.index_volume += 2
+		self.file_volume.close()
+
+					
+
 	def killer(self,process_name):
 		os.system('taskkill /f /im ' + process_name)
 
@@ -38,7 +41,8 @@ class Hardware:
 		volume = cast(interface, POINTER(IAudioEndpointVolume))
 
 		currentVolumeDb = volume.GetMasterVolumeLevel()
-		_VALUE = [currentVolumeDb + 6,currentVolumeDb -6,M_volume[value]] 
+		_VALUE = [currentVolumeDb + 6,currentVolumeDb - 6,self.M_volume[value]] 
+
 		# 0 : tăng, 1 : giảm, 2 : set âm thanh 
 		try:
 			volume.SetMasterVolumeLevel(_VALUE[ok], None)

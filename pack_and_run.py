@@ -86,6 +86,7 @@ class speech_and_say:
                 break
             elif('Tắt' or 'off' or 'off' in text):
             	exit()
+            time.sleep(1)
             
             
 
