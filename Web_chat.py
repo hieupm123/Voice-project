@@ -75,7 +75,7 @@ class facebook(object):
 	# Quay lại trang chủ facebook
 	def home_facebook(self):
 		self.driver_web.get("https://www.facebook.com")
-		sleep(randint(1,2))
+		time.sleep(randint(1,2))
 
 
 	def element_in_viewport(self,drivers, elem):
