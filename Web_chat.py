@@ -105,7 +105,7 @@ class Search_in_facebook(facebook):
 	search_buttons = None
 
 
-	def __init(self):
+	def _init(self):
 		try:
 			self.search_buttons = self.driver_web.find_elements_by_xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div/div/div/label/input")
 			time.sleep(randint(1,2))
