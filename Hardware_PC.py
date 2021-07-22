@@ -13,7 +13,6 @@ from pack_and_run import os,time,schedule
 # thì chúng ta sẽ gọi hàm = srt
 
 class Hardware:
-	# Hàm cho phép tắt phần mềm = task_manager	
 	def __init__(self):
 		# Thông số volume
 		self.file_volume = open("in_volume.txt",'r')
@@ -28,6 +27,7 @@ class Hardware:
 
 					
 
+	# Hàm cho phép tắt phần mềm = task_manager	
 	def killer(self,process_name):
 		os.system('taskkill /f /im ' + process_name)
 
@@ -49,27 +49,23 @@ class Hardware:
 		except:
 			pass
 
-	# Hàm về unikey
-	def unikey(self,func):
-		def open_table_unikey():
-			pyautogui.hotkey('ctrl', 'shift', 'f5')
+	# Hàm về đổi unikey
+	def change_unikey(self):
+		pyautogui.hotkey('ctrl', 'shift')
+		pyautogui.hotkey('alt', 'z')
 
-		def change_unikey():
-			pyautogui.hotkey('ctrl', 'shift')
-			pyautogui.hotkey('alt', 'z')
 
-		return locals()[func]()
-
-	# Hàm lấy thời gian
-	def get_current_time(self, func):
+	# Xem giờ
+	def get_time(self):
 		now = datetime.now()
-		def get_time():
-			a = [now.strftime("%H"),now.strftime("%M"),now.strftime("%S")]
-			return a
-		def get_day():
-			a = [now.strftime("%d"),now.strftime("%m"),now.strftime("%Y")]
-			return a
-		return locals()[func]()
+		a = [now.strftime("%H"),now.strftime("%M"),now.strftime("%S")]
+		return a
+
+	# Xem ngày
+	def get_day(self):
+		now = datetime.now()
+		a = [now.strftime("%d"),now.strftime("%m"),now.strftime("%Y")]
+		return a
 
 	# Hàm cho máy đi ngủ
 	def sleep_computer(self):
@@ -79,42 +75,42 @@ class Hardware:
 	def turn_off_computer(self):
 		os.system("shutdown /s /t 1")
 
-	# Hàm về cpu,ram,battery
-	def get_cpu_ram_battery(self,func):
+	# get ram
+	def get_ram(self):
+		return psutil.virtual_memory()[2]
 
-		def get_ram():
-			return psutil.virtual_memory()[2]
+	# get cpu
+	def get_cpu(self):
+		return psutil.cpu_percent(4)
 
-		def get_cpu():
-			return psutil.cpu_percent(4)
+	# get pin
+	def get_battery(self):
+		battery = psutil.sensors_battery()
+		plugged = battery.power_plugged
+		percent = str(battery.percent)
+		plugged_EL = "Plugged In" if plugged else "Not Plugged In"
+		plugged_VN = "Đang sạc" if plugged else "Không sạc"
+		return [percent,plugged_EL,plugged_VN]
 
-		def get_battery():
-			battery = psutil.sensors_battery()
-			plugged = battery.power_plugged
-			percent = str(battery.percent)
-			plugged_EL = "Plugged In" if plugged else "Not Plugged In"
-			plugged_VN = "Đang sạc" if plugged else "Không sạc"
-			return [percent,plugged_EL,plugged_VN]
 
-		return locals()[func]()
+	# Bật tiết kiệm pin
+	def battery_saving_on(self):
+		os.system("powercfg /setdcvalueindex SCHEME_CURRENT SUB_ENERGYSAVER ESBATTTHRESHOLD 100")
+		os.system("powercfg /setactive scheme_current")
 
-	# Hàm tăng giảm độ sáng, và tắt mở tiết kiệm pin
-	def battery_saving_and_screen_brightness(self,func):
-		def battery_saving_on():
-			os.system("powercfg /setdcvalueindex SCHEME_CURRENT SUB_ENERGYSAVER ESBATTTHRESHOLD 100")
-			os.system("powercfg /setactive scheme_current")
+	# Tắt tiết kiệm pin
+	def battery_saving_off(self):
+		os.system("powercfg /setdcvalueindex SCHEME_CURRENT SUB_ENERGYSAVER ESBATTTHRESHOLD 5")
+		os.system("powercfg /setactive scheme_current")
 
-		def battery_saving_off():
-			os.system("powercfg /setdcvalueindex SCHEME_CURRENT SUB_ENERGYSAVER ESBATTTHRESHOLD 5")
-			os.system("powercfg /setactive scheme_current")
+	# Tăng độ sáng
+	def screen_brightness_up(self,light = '+10'):
+		sbc.set_brightness(light)
 
-		def screen_brightness_up(light = '+10'):
-			sbc.set_brightness(light)
+	# Giảm độ sáng
+	def screen_brightness_down(self,light = '-10'):
+		sbc.set_brightness(light)
 
-		def screen_brightness_down(light = '-10'):
-			sbc.set_brightness(light)
-
-		def screen_brightness_set(light):
-			sbc.set_brightness(str(light))
-
-		locals()[func]()
+	# Cài đặt độ sáng
+	def screen_brightness_set(self,light):
+		sbc.set_brightness(str(light))

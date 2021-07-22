@@ -128,6 +128,7 @@ class Search_in_facebook(facebook):
 	def click_in_search(self):
 		self.driver_web.execute_script("arguments[0].click();",self.driver_web.find_element_by_xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div/label/input"))
 
+	# Chọn bạn bè trên facebook
 	def chose_when_find(self, number_of_tab):
 		PATH = '/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div[2]/div/ul/li[' + str(number_of_tab) + ']/div/a'
 		try:
@@ -137,31 +138,6 @@ class Search_in_facebook(facebook):
 		time.sleep(randint(1,2))
 
 class story_facebook(facebook):
-
-	# Cài đặt trong phần tạo mới story
-	def setting_when_create_story(self, numbet_of_tab):
-		# 2 : Công khai, 3 : Bạn bè, 4 : Tùy chỉnh
-		PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div/i'
-		try:
-			self.click_to_any_button(PATH)
-			try:
-				PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/div[2]/div[' + str(numbet_of_tab) + ']/div/div[1]/div[2]/div[1]'
-				self.click_to_any_button(PATH)
-				try:
-					PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div/div/div[4]/div/div[1]/div[1]/div'
-					self.click_to_any_button(PATH)
-				except:
-					pass
-				try:
-					PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/div[2]/div[6]/div/div/div[1]/div[1]/div'
-					self.click_to_any_button(PATH)
-				except:
-					pass
-			except:
-				pass
-		except:
-			pass
-
 	# Xem story
 	def watch_story(self,number_of_tab = 2): # tính từ 2 sẽ là story thứ nhất
 		PATH = '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[2]/div/div/div[1]/div/div[' + str(number_of_tab) + ']/div/div/div/a'
@@ -171,73 +147,23 @@ class story_facebook(facebook):
 			pass # sau xử lý bug với âm thanh
 		time.sleep(randint(1,2))
 
-	# Chọn story trong giao diện chính
-	def watch_story_in_story(self,func,number_of_tab = 2):
 
-		# Chọn story trong các story ở trong
-		def chose_story(number_of_tab):
-			try:
-				PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[3]/div[2]/div/div/div/div/div[1]/div/div/div/div/div/div[3]/div/div/div[2]/div[' + str(number_of_tab) + ']/div/div/div'
-				self.click_to_any_button(PATH)
-			except:
-				pass
+	# Chọn story trong các story ở trong
+	def chose_story(self,number_of_tab = 2):
+		try:
+			PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[3]/div[2]/div/div/div/div/div[1]/div/div/div/div/div/div[3]/div/div/div[2]/div[' + str(number_of_tab) + ']/div/div/div'
+			self.click_to_any_button(PATH)
+		except:
+			pass
 
-		# CHọn story tiếp theo
-		def next_story(number_of_tab):
-			PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[3]/div[2]/div/div/div/div/div[3]/div/div/div/div[1]/div[1]/div[3]/div/div/div[2]'
-			try:
-				self.click_to_any_button(PATH)
-			except:
-				pass
-
-
-		locals()[func](number_of_tab)
-
-	# Click vào tạo mới story
-	def create_new_story(self):
-		PATH = '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[2]/div/div/div[1]/div/div[1]/div/a'
+	# Chọn story tiếp theo
+	def next_story(self):
+		PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[3]/div[2]/div/div/div/div/div[3]/div/div/div/div[1]/div[1]/div[3]/div/div/div[2]'
 		try:
 			self.click_to_any_button(PATH)
 		except:
-			pass # sau xử lý bug với âm thanh
-		time.sleep(randint(1,2))
+			pass
 
-	# Tạo mới story = văn bản
-	def create_new_story_with_text(self,func,text = 'Yêu e Lộc', number_of_front = 10):
-			# text : là phần người dùng muốn viết story = văn bản
-
-		# Click vào phần tạo văn bản
-		def story_with_text_click(text,number_of_front):
-			PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[3]/div[2]/div[2]/div/div/div/div/div[2]/div[1]/div[1]/i'
-			try:
-				self.click_to_any_button(PATH)
-			except:
-				pass
-			time.sleep(randint(1,2))
-
-		# Gõ trên phần tạo mới
-		def story_with_typing(text,number_of_front):
-			try:
-				self.write_the_text('/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div[3]/div[1]/div[2]/div/div[3]/div/div[1]/div/label',text)
-			except:
-				pass
-		
-		# Đổi phông lớn 
-		def doi_phong_story(text,num_of_front):
-			PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div[3]/div[1]/div[2]/div/div[3]/div/div[3]/div[2]/div[' + str(number_of_front) + ']/div/div'
-			try:
-				self.click_to_any_button(PATH)
-			except:
-				pass
-
-		# Lưu story
-		def save_story(text,num_of_front):
-			try:
-				self.click_to_any_button('/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div/div[1]')
-			except:
-				pass
-		
-		locals()[func](text,number_of_front)
 class Friend_facebook(facebook):
 	# Mở list friend
 	PATH = 'https://www.facebook.com/friends'
@@ -294,7 +220,6 @@ class watch_facebook(facebook):
 					self.driver_web.execute_script('arguments[0].click()',click[i - 1])
 					return
 			except:
-				print('No element_in_viewport')
 				return		
 
 
@@ -320,7 +245,6 @@ class watch_facebook(facebook):
 					time.sleep(randint(1,2))
 					return;
 			except:
-				print('No element_in_viewport')
 				return
 				
 	# Cảm xúc khi xem video
@@ -342,7 +266,6 @@ class watch_facebook(facebook):
 			except:
 				# sử lí lỗi
 				return
-		print('No element_in_viewport')
 
 	# Lưu và follow
 	def save_and_follow(self,chose = 1):
@@ -360,7 +283,6 @@ class watch_facebook(facebook):
 			except:
 				# xử lí lỗi
 				return
-		print('No element_in_viewport')	
 
 
 	# Thả biểu cảm khi xem video
@@ -612,10 +534,3 @@ class messenger:
 		except:
 			return text
 		return text;
-
-
-
-
-
-
-
