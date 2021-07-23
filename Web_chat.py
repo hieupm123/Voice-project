@@ -1,37 +1,8 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.keys import Keys
-import js2py
-import time
-from queue import Queue
-from random import seed
-from random import randint
-from selenium.webdriver.common.action_chains import ActionChains 
+from general_web import *
 
-
-output_check = ''
-file_check_chrome = open('check_chrome_version.txt','r+');
-output_check = file_check_chrome.read()
-if(output_check == ''):
-	driver = webdriver.Chrome('./chrome_driver/chromedriver.exe')
-	driver.get('chrome://version/')
-	profile_path = driver.find_element_by_id('profile_path').text
-	def cleanup_str_profile_path():
-		ans = ''
-		str(profile_path)
-		for i in range (9,len(profile_path),1):
-			if(profile_path[i] != '\\'):
-				ans += profile_path[i]
-			else:
-				break
-		return ans
-
-	file_check_chrome.write(cleanup_str_profile_path())
-	driver.close()
-	output_check = cleanup_str_profile_path() 
-file_check_chrome.close()
+general = general_web()
+output_check = general.lay_ten_nguoi_dung()
 # để lấy tên người dùng phục vụ chức năng lưu cookie sau này
-
 
 class facebook(object): 
 
@@ -170,7 +141,7 @@ class Friend_facebook(facebook):
 
 
 	# Chuyển sang tab bạn bè
-	def open_friend_button(self):
+	def trang_chu_ban_be(self):
 		self.driver_web.get(self.PATH)
 		time.sleep(randint(1,2))
 
@@ -206,7 +177,6 @@ class watch_facebook(facebook):
 					time.sleep(randint(1,2))
 					return
 			except:
-				print('No element_in_viewport')
 				return
 
 	# bật tắt loa ở ngoài
@@ -300,7 +270,7 @@ class watch_facebook(facebook):
 		except:
 			pass
 
-	def watch_video_home(self):
+	def trang_chu_watch(self):
 		self.driver_web.get('https://www.facebook.com/watch')
 		time.sleep(randint(1,2))
 
@@ -308,9 +278,6 @@ class watch_facebook(facebook):
 		self.driver_web.get('https://www.facebook.com/watch/search/?q=' + text)
 		time.sleep(randint(1,2))
 
-	def live_video(self):
-		self.driver_web.get('https://www.facebook.com/watch/live/?ref=watch')
-		time.sleep(randint(1,2))
 
 
 class status_facebook(facebook):
@@ -364,7 +331,6 @@ class status_facebook(facebook):
 		except:
 			# sử lí lỗi
 			return
-		print('No element_in_viewport')
 
 
 class check_tin_nhan_thong_bao(facebook):
