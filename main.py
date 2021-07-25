@@ -1,17 +1,4 @@
-import sqlite3
 
-conn = sqlite3.connect('process_func.db')
+driver.execute_script("window.scrollTo(0, window.scrollY + 200)")
 
-c = conn.cursor()
-
-
-# customer
-# c.execute("INSERT INTO customer VALUES('Hieu','minhhieu@minhhieu')")
-
-c.execute("""
-	SELECT * FROM customer ORDER BY name DESC
-""")
-# c.execute("DROP TABLE customer")
-# print(c.fetchall())
-# conn.commit()
-conn.close()
+# Hieu sua

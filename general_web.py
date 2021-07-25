@@ -31,6 +31,8 @@ class general_web:
 			output_check = cleanup_str_profile_path() 
 		file_check_chrome.close()
 		return output_check
+		
+
 
 
 	def kiem_tra_trong_view(self,drivers, elem):
@@ -66,15 +68,16 @@ class general_web:
 		except:
 			pass
 
-	def scroll_down(self,driver,len  = 350):
+	def scroll_up(self,driver,len  = 325):
 		try:
 			driver.execute_script("window.scrollTo(0, window.scrollY + " + str(len) + " )")
 		except:
 			pass
 
-	def scroll_down(self,driver,len  = 350):
+	def scroll_down(self,driver,len  = 325):
 		try:
 			driver.execute_script("window.scrollTo(0, window.scrollY - " + str(len) + " )")
 		except:
 			pass
+
 

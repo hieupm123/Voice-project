@@ -401,8 +401,10 @@ class check_tin_nhan_thong_bao(facebook):
 
 # chức năng về mess
 class messenger:
+
 	driver_web = None
 
+	
 	def init(self):
 		options = webdriver.ChromeOptions()
 		PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
