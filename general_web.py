@@ -6,6 +6,9 @@ import time
 from random import seed
 from random import randint
 from selenium.webdriver.common.action_chains import ActionChains 
+from webdriver_manager.chrome import ChromeDriverManager
+import pyautogui
+from time import sleep
 class general_web:
 	def lay_ten_nguoi_dung(self):
 		output_check = ''
