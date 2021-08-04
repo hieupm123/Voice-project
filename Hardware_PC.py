@@ -11,6 +11,12 @@ from pack_and_run import os,time,schedule
 
 # Note: Tất cả các hàm và class có thể gọi = str nên nếu chắc năng nào cần viết nhiều hàm
 # thì chúng ta sẽ gọi hàm = srt
+<<<<<<< HEAD
+#
+#
+
+=======
+>>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 
 class Hardware:
 	def __init__(self):

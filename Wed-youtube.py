@@ -344,6 +344,10 @@ class search_youtube(youtube):
 
     def chat_luong_video(self,index = 3):
         try:
+<<<<<<< HEAD
+            # Sử lí giọng nói để lấy chất lượng video
+=======
+>>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
             quality = ['144p','240p','360p','480p','720p','1080p','1440p']
             use = self.trinhduyet.find_element_by_xpath("//div[contains(text(),'Quality')]")
             self.trinhduyet.execute_script("arguments[0].click();",use)
@@ -357,8 +361,12 @@ class search_youtube(youtube):
         except:
             pass
     def toc_do_video(self,index = 3):
+<<<<<<< HEAD
+        # Sử lí giọng nói để xử lí toc_do_video
+=======
         # out  = 
         # Normal
+>>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
         speed = ['0.25','0.5','0.75','Chuẩn','1.25','1.5','1.75','2']
         use = self.trinhduyet.find_element_by_xpath("//div[contains(text(),'Playback speed')]")
         self.trinhduyet.execute_script("arguments[0].click();",use)
