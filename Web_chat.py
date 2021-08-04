@@ -4,12 +4,7 @@ general = general_web()
 output_check = general.lay_ten_nguoi_dung()
 # để lấy tên người dùng phục vụ chức năng lưu cookie sau này
 
-<<<<<<< HEAD
-
-=======
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 class facebook(object): 
-
 	driver_web = None
 
 	# Khởi tạo facebook
@@ -22,22 +17,7 @@ class facebook(object):
 		self.driver_web.get("https://www.facebook.com")
 		time.sleep(3)
 
-<<<<<<< HEAD
-=======
 
-	# Đăng nhập = facebook
-	def login(self,user = '',pas = ''):
-		try:
-			login_user = self.driver_web.find_element_by_id('email')
-			login_user.send_keys(user)
-			login_user = self.driver_web.find_element_by_id('pass')
-			login_user.send_keys(pas)
-			login_user.send_keys(Keys.RETURN)
-			time.sleep(randint(1,2))
-		except:
-			pass
-
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 	def click_to_any_button(self, PATH):
 		self.driver_web.execute_script("arguments[0].click();",self.driver_web.find_element_by_xpath(PATH))
 		time.sleep(randint(1,2))
@@ -80,29 +60,12 @@ class facebook(object):
 
 
 class Search_in_facebook(facebook):
-<<<<<<< HEAD
-=======
-	search_buttons = None
-
-
-	def _init(self):
-		try:
-			self.search_buttons = self.driver_web.find_elements_by_xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div/div/div/label/input")
-			time.sleep(randint(1,2))
-		except:
-			pass
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
-
 
 	# Gõ và tìm trên thanh tìm kiếm bạn bè
 	def type_in_search(self,name = 'Minh Hiếu Vũ'): # lưu ý driver là biến, func là tên hàm
 		try:
-<<<<<<< HEAD
 			search_buttons = self.driver_web.find_elements_by_xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div/div/div/label/input")
 			for button in search_buttons:
-=======
-			for button in self.search_buttons:
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 				button.send_keys(name)
 				time.sleep(1)
 				button.send_keys(Keys.RETURN)
@@ -149,8 +112,6 @@ class story_facebook(facebook):
 			self.click_to_any_button(PATH)
 		except:
 			pass
-
-<<<<<<< HEAD
 	# Bình luận trong story
 	def comment(self,text = 'Bạn cute thế!'):
 		try:
@@ -176,8 +137,6 @@ class story_facebook(facebook):
 		except:
 			pass;
 
-=======
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 class Friend_facebook(facebook):
 	# Mở list friend
 	PATH = 'https://www.facebook.com/friends'
@@ -198,22 +157,10 @@ class Friend_facebook(facebook):
 		self.driver_web.get(self.PATH + '/list/')
 		time.sleep(randint(1,2))
 
-<<<<<<< HEAD
 class watch_facebook(facebook):	
 
 	# Tạm dừng và tiếp tục khi xem video ở ngoài watch
 	def tat_mo_tam_dung_facebook(self):
-=======
-class watch_facebook(facebook):
-
-	# Tạm dừng và tiếp tục khi xem video trong watch
-	def tat_mo_tam_dung_trong(self):
-		time.sleep(randint(1,2))
-		ActionChains(self.driver_web).key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
-
-	# Tạm dừng và tiếp tục khi xem video ở ngoài watch
-	def tat_mo_tam_dung_o_ngoai(self):
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 		for i in range(1,100):
 			try:
 				use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[5]')
@@ -230,11 +177,7 @@ class watch_facebook(facebook):
 				return
 
 	# bật tắt loa ở ngoài
-<<<<<<< HEAD
 	def bat_tat_loa_facebook(self):
-=======
-	def bat_tat_loa_o_ngoai(self):
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 		for i in range(1,100):
 			try:
 				use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[5]')
@@ -248,11 +191,7 @@ class watch_facebook(facebook):
 
 
 	# Comment vào video trong watch
-<<<<<<< HEAD
 	def comment(self,text = 'Lần đầu comment'):
-=======
-	def comment_in_watch(self,text = 'Lần đầu comment'):
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 		# text là phần người ta muốn comment
 		use = None
 		try:
@@ -276,11 +215,7 @@ class watch_facebook(facebook):
 				return
 				
 	# Cảm xúc khi xem video
-<<<<<<< HEAD
 	def bieu_cam_facebook(self,stt_bieu_cam = 0):
-=======
-	def bieu_cam_watch(self,stt_bieu_cam = 0):
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 		#Tính từ 0
 		bieu_cam = ['Thích','Yêu thích','Thương thương','Haha','Wow','Buồn','Phẫn nộ']
 		for i in range(1,200):
@@ -316,7 +251,6 @@ class watch_facebook(facebook):
 				# xử lí lỗi
 				return
 
-<<<<<<< HEAD
 	def trang_chu_watch(self):
 		self.driver_web.get('https://www.facebook.com/watch')
 		time.sleep(randint(1,2))
@@ -335,11 +269,6 @@ class watch_facebook_in(facebook):
 
 	# Thả biểu cảm khi xem video
 	def bieu_cam_facebook(self,stt_bieu_cam = 0):
-=======
-
-	# Thả biểu cảm khi xem video
-	def bieu_cam_trong_video(self,stt_bieu_cam = 0):
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 		#tinh từ 0 là like
 		bieu_cam = ['Thích','Yêu thích','Thương thương','Haha','Wow','Buồn','Phẫn nộ']
 		try:
@@ -353,18 +282,6 @@ class watch_facebook_in(facebook):
 		except:
 			pass
 
-<<<<<<< HEAD
-=======
-	def trang_chu_watch(self):
-		self.driver_web.get('https://www.facebook.com/watch')
-		time.sleep(randint(1,2))
-
-	def find_video(self,text):
-		self.driver_web.get('https://www.facebook.com/watch/search/?q=' + text)
-		time.sleep(randint(1,2))
-
-
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 
 class status_facebook(facebook):
 
@@ -401,11 +318,7 @@ class status_facebook(facebook):
 		return -10;
 
 	# Thả biểu cảm trong status
-<<<<<<< HEAD
 	def bieu_cam_facebook(self, stt_bieu_cam = 0):
-=======
-	def bieu_cam_status(self, stt_bieu_cam = 0):
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 		#Tính từ 0
 		bieu_cam = ['Thích','Yêu thích','Thương thương','Haha','Wow','Buồn','Phẫn nộ']
 		
@@ -422,7 +335,6 @@ class status_facebook(facebook):
 			# sử lí lỗi
 			return
 
-<<<<<<< HEAD
 	# Lưu status
 	def save_and_follow(self):
 		try:
@@ -439,9 +351,6 @@ class status_facebook(facebook):
 			time.sleep(randint(1,2));
 		except:
 			pass
-
-=======
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 
 class check_tin_nhan_thong_bao(facebook):
 	# Kiểm tra tin nhắn mới
@@ -514,7 +423,7 @@ class messenger:
 
 	driver_web = None
 
-	
+		
 	def init(self):
 		options = webdriver.ChromeOptions()
 		PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
@@ -525,11 +434,7 @@ class messenger:
 		time.sleep(2)
 
 	# Tìm kiếm bạn bè theo tên trên mess
-<<<<<<< HEAD
 	def type_in_search(self, name = 'Vũ Minh Hiếu'):
-=======
-	def search_by_name(self, name = 'Vũ Minh Hiếu'):
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
 		try:
 			time.sleep(randint(1,2))
 			use = self.driver_web.find_element_by_xpath('//input[@type="search"]')
@@ -615,11 +520,7 @@ class messenger:
 			text = use.text
 		except:
 			return text
-<<<<<<< HEAD
 		return text;
 
 I = facebook()
 I.init();
-=======
-		return text;
->>>>>>> e678d32719d972692f9e27850fb62bd1c617d45a
