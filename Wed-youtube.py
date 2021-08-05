@@ -76,7 +76,7 @@ def scroll_up(self,a=''):
 
 
 #Chọn vidoe trên khám phá---------------------------------------------------------------------------------------------------------------------------------
-class vidoe_kham_pha(youtube):
+class video_kham_pha(youtube):
     def trending(self):
         try:
             trending = self.trinhduyet.find_elements_by_class_name('ytd-destination-shelf-renderer')
@@ -175,6 +175,10 @@ class search_youtube(youtube):
             ActionChains(self.trinhduyet).move_to_element(truy_cap_kenh).click(truy_cap_kenh).perform()
         except:
             pass
+
+#Thao tac video 
+
+class video(youtube):
 
     def phong_to_nho(self):
         try:
