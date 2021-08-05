@@ -9,6 +9,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_manager.chrome import ChromeDriverManager
 import pyautogui
 from time import sleep
+import pickle
+model = pickle.load(open("su_li_so.pkl", 'rb'))
 class general_web:
 	def lay_ten_nguoi_dung(self):
 		output_check = ''
@@ -83,4 +85,13 @@ class general_web:
 		except:
 			pass
 
+	def get_number(self, text):
+		try:
+			number = int(text);
+			return number;
+		except:
+			ar = [text];
+			y_pred = model.predict(ar)
+			return int(y_pred[0])
+		return 2;
 
