@@ -1,129 +1,45 @@
-from selenium import webdriver
-from time import sleep
-from webdriver_manager.chrome import ChromeDriverManager
-import pyautogui
-from selenium.webdriver.common.keys import Keys 
-from selenium.webdriver.common.action_chains import ActionChains
+from general_web import *
+# from pack_and_run import *
+general = general_web()
+output_check = general.lay_ten_nguoi_dung()
 
+speech = speech_and_say();
+
+def speech_catch_error():
+    text_catch = 'Có gì đó không đúng bạn vui lòng xem lại yêu cầu của mình'
+    speech.say_VN_by_Microsoft(text_catch)
 
 class google:
   
-    def mo_trinh_duyet(self):
+    def init(self):
         try:
-            global trinhduyet
-            options = webdriver.ChromeOptions() 
-            options.add_experimental_option("excludeSwitches", ["enable-logging"])
-            trinhduyet = webdriver.Chrome(options=options, executable_path=r"C:\ProgramData\chromedriver_10\chromedriver.exe")
-            trinhduyet.maximize_window() 
-            trinhduyet.implicitly_wait(20)
-            trinhduyet.get('https://www.google.com/')
-            sleep(3)
+            options = webdriver.ChromeOptions()
+            PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
+            PATH1 = PATH[:9] + output_check + PATH[9:]
+            options.add_argument("user-data-dir=" + PATH1)
+            self.driver_web = webdriver.Chrome(executable_path=r'./chrome_driver/chromedriver.exe',chrome_options=options)
+            self.driver_web.get("https://www.google.com/")
+            time.sleep(3)
         except:
             pass
-    def open_new_window(self):
+
+    def home(self):
+        self.driver_web.get('https://www.google.com/')
+        time.sleep(2)
+
+    def type_in_search(self,nhap = ''):
         try:
-            pyautogui.hotkey('ctrl', 'n')
-        except:
-            pass
-    def open_new_tab(self):
-        try:
-           pyautogui.hotkey('ctrl', 't')
-        except:
-            pass
-    def reload(self):
-        try:
-           pyautogui.hotkey('f5')
-        except:
-            pass
-    def on_off_full_screen(self):
-        try:
-         pyautogui.hotkey('f11')
-        except:
-            pass
-    def size_content_big(self):
-        try:
-            pyautogui.hotkey('ctrl', '+')
-        except:
-            pass
-    def size_content_small(self):
-        try:
-            pyautogui.hotkey('ctrl', '-')
-        except:
-            pass
-    def size_content_normal(self):
-        try:
-          pyautogui.hotkey('ctrl', '0')
-        except:
-            pass
-    def move_link_back(self):
-        try:
-           pyautogui.hotkey('alt', 'left')
-        except:
-            pass
-    def move_link_up(self):
-        try:
-           pyautogui.hotkey('alt', 'right')
-        except:
-            pass
-    def close_tab(self):
-        try:
-           pyautogui.hotkey('ctrl', 'w')
-        except:
-            pass
-    def close_program(self):
-        try:
-           pyautogui.hotkey('alt', 'f4')   
-        except:
-            pass 
-    def box_search(self,nhap = ''):
-        try:
-            search = trinhduyet.find_element_by_xpath('/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input')
-            search.send_keys('abc')
+            search = self.driver_web.find_element_by_xpath('/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input')
+            search.send_keys(nhap)
             search.send_keys(Keys.RETURN)
             sleep(2)
         except:
             pass
-    def move_down (self,a=''):
+
+    def select_link(self,a=1):
         try:
-          trinhduyet.execute_script("window.scrollTo(0, window.scrollY + " + str(a) + " )")
+            chon = self.driver_web.find_elements_by_class_name("LC20lb")
+            self.driver_web.implicitly_wait(10)
+            ActionChains(self.driver_web).move_to_element(chon[a-1]).click(chon[a-1]).perform()
         except:
             pass
-    def move_up (self,a=''):
-        try:
-          trinhduyet.execute_script("window.scrollTo(0, window.scrollY + " - str(a) + " )")
-        except:
-            pass
-    def select_link(self,a=''):
-        try:
-            chon = trinhduyet.find_elements_by_class_name("LC20lb")
-            trinhduyet.implicitly_wait(10)
-            ActionChains(trinhduyet).move_to_element(chon[a-1]).click(chon[a-1]).perform()
-        except:
-            pass
-    def back_search(self,nhap = ''):
-        try:
-            xoatimkiem = trinhduyet.find_element_by_xpath('//*[@id="tsf"]/div[1]/div[1]/div[2]/div/div[3]/div[1]/span[1]')
-            trinhduyet.implicitly_wait(10)
-            ActionChains(trinhduyet).move_to_element(xoatimkiem).click(xoatimkiem).perform()
-            sleep(1)
-            timkiem = trinhduyet.find_element_by_xpath('//*[@id="tsf"]/div[1]/div[1]/div[2]/div/div[2]/input')
-            timkiem.send_keys(nhap) 
-            timkiem.send_keys(Keys.RETURN)
-            sleep(1)
-        except:
-            pass
-        
-
-    
-
-        
-    
-    
-    
-
-
-
-
-
-
-

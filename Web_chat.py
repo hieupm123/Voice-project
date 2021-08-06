@@ -1,14 +1,14 @@
 from general_web import *
-from pack_and_run import *
+# from pack_and_run import *
 general = general_web()
 output_check = general.lay_ten_nguoi_dung()
 
-# để lấy tên người dùng phầnục vụ chức năng lưu cookie sau này
+# để lấy tên người dùng phục vụ chức năng lưu cookie sau này
 speech = speech_and_say();
 
 def speech_catch_error():
 	text_catch = 'Có gì đó không đúng bạn vui lòng xem lại yêu cầu của mình'
-	speech.say_VN_by_Google(text_catch)
+	speech.say_VN_by_Microsoft(text_catch)
 
 class facebook(object): 
 	driver_web = None
@@ -29,7 +29,7 @@ class facebook(object):
 		time.sleep(randint(1,2))
 
 	# Quay lại trang chủ facebook
-	def home_facebook(self):
+	def home(self):
 		self.driver_web.get("https://www.facebook.com")
 		time.sleep(randint(1,2))
 
@@ -62,40 +62,22 @@ class Search_in_facebook(facebook):
 	# Gõ và tìm trên thanh tìm kiếm bạn bè
 	def type_in_search(self,name = 'Vũ Minh Hiếu'): # lưu ý driver là biến, func là tên hàm
 		try:
+			# print(name)
 			text = speech.speech_none_pause();
 			if(text != ''):
 				name = text;
-			search_buttons = self.driver_web.find_elements_by_xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div/div/div/label/input")
-			for button in search_buttons:
-				button.send_keys(name)
-				time.sleep(1)
-				button.send_keys(Keys.RETURN)
-			time.sleep(randint(1,2))
-		except:
-			speech.say_VN_by_Google(text_catch);
-
-	# Nhấn vào thanh tìm kiếm bạn bè
-	def click_in_search(self):
-		try:
-			self.driver_web.execute_script("arguments[0].click();",self.driver_web.find_element_by_xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div/label/input"))
-		except:
-			speech_catch_error()
-	# Chọn bạn bè trên facebook
-	def chose_when_find(self, number_of_tab = 1):
-		text = speech.speech_none_pause();
-		number_of_tab = general.get_number()
-		PATH = '/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div[2]/div/ul/li[' + str(number_of_tab) + ']/div/a'
-		try:
-			self.driver_web.execute_script("arguments[0].click();",self.driver_web.find_element_by_xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div/label/input"))
 			time.sleep(randint(1,2));
-			self.click_to_any_button(PATH)
+			search_buttons = self.driver_web.find_element_by_xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div/label/input")
+			search_buttons.send_keys(name)
+			time.sleep(1)
+			search_buttons.send_keys(Keys.RETURN)
 			time.sleep(randint(1,2))
 		except:
 			speech_catch_error()
 
 class story_facebook(facebook):
 	# Xem story
-	def watch_story(self,number_of_tab = 1):
+	def chon_video(self,number_of_tab = 1):
 		text = speech.speech_none_pause();
 		number_of_tab = general.get_number(text)
 		PATH = '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[2]/div/div/div[1]/div/div[' + str(number_of_tab + 1) + ']/div/div/div/a'
@@ -105,9 +87,9 @@ class story_facebook(facebook):
 			speech_catch_error() # sau xử lý bug với âm thanh
 		time.sleep(randint(1,2))
 
-
+class story_facebook_in(facebook):
 	# Chọn story trong các story ở trong
-	def chose_story(self,number_of_tab = 1):
+	def chon_video(self,number_of_tab = 1):
 		try:
 			text = speech.speech_none_pause();
 			number_of_tab = general.get_number(text)
@@ -118,7 +100,7 @@ class story_facebook(facebook):
 			speech_catch_error()
 
 	# Chọn story tiếp theo
-	def next_story(self):
+	def next_video(self):
 		PATH = '/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[1]/div/div[3]/div[2]/div/div/div/div/div[3]/div/div/div/div[1]/div[1]/div[3]/div/div/div[2]'
 		try:
 			self.click_to_any_button(PATH)
@@ -158,13 +140,8 @@ class Friend_facebook(facebook):
 
 
 	# Chuyển sang tab bạn bè
-	def trang_chu_ban_be(self):
+	def home(self):
 		self.driver_web.get(self.PATH)
-		time.sleep(randint(1,2))
-
-	# Chuyển sang tab ưu tiên bạn bè
-	def open_suggestions(self):
-		self.driver_web.get(self.PATH +  '/suggestions/')
 		time.sleep(randint(1,2))
 
 	# Show list friend
@@ -175,7 +152,7 @@ class Friend_facebook(facebook):
 class watch_facebook(facebook):	
 
 	# Tạm dừng và tiếp tục khi xem video ở ngoài watch
-	def tat_mo_tam_dung_facebook(self):
+	def tat_mo_tam_dung_video(self):
 		for i in range(1,100):
 			try:
 				use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[5]')
@@ -193,7 +170,7 @@ class watch_facebook(facebook):
 				return;
 
 	# bật tắt loa ở ngoài
-	def bat_tat_loa_facebook(self):
+	def bat_tat_loa_video(self):
 		for i in range(1,100):
 			try:
 				use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[5]')
@@ -274,7 +251,7 @@ class watch_facebook(facebook):
 				speech_catch_error()
 				return
 
-	def trang_chu_watch(self):
+	def home(self):
 		self.driver_web.get('https://www.facebook.com/watch')
 		time.sleep(randint(1,2))
 
@@ -288,7 +265,7 @@ class watch_facebook(facebook):
 
 class watch_facebook_in(facebook):
 	# Tạm dừng và tiếp tục khi xem video trong watch
-	def tat_mo_tam_dung_facebook(self):
+	def tat_mo_tam_dung_video(self):
 		time.sleep(randint(1,2))
 		ActionChains(self.driver_web).key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
 
@@ -397,7 +374,7 @@ class check_tin_nhan_thong_bao(facebook):
 				text = text.replace('Messenger','Không có tin nhắn mới')
 				text = text.replace('Không có tin nhắn mới,' ,'')
 				driver.quit()
-				speech.say_VN_by_Google(text.strip())
+				speech.say_VN_by_Microsoft(text.strip())
 				return;
 			except:
 				speech_catch_error()
@@ -411,7 +388,7 @@ class check_tin_nhan_thong_bao(facebook):
 		except:
 			speech_catch_error()
 			return;
-		speech.say_VN_by_Google(text)
+		speech.say_VN_by_Microsoft(text)
 
 
 	# Kiếm tra thông báo mới	
@@ -432,7 +409,7 @@ class check_tin_nhan_thong_bao(facebook):
 				text = text.replace('Thông báo','Không có thông báo mới')
 				text = text.replace('Không có thông báo mới,' ,'')
 				driver.quit()
-				speech.say_VN_by_Google(text.strip())
+				speech.say_VN_by_Microsoft(text.strip())
 				return;
 			except:
 				speech_catch_error()
@@ -446,7 +423,7 @@ class check_tin_nhan_thong_bao(facebook):
 		except:
 			speech_catch_error()
 			return;
-		speech.say_VN_by_Google(text)
+		speech.say_VN_by_Microsoft(text)
 
 	
 
@@ -560,16 +537,16 @@ class messenger:
 				use = driver.find_element_by_xpath('/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[1]/div/div[1]/div/div[2]/div/div[1]/h2/span/span/a')
 				text = use.text
 				driver.quit()
-				speech.say_VN_by_Google(text.strip());
+				speech.say_VN_by_Microsoft(text.strip());
 				return;
 			except:
-				speech.say_VN_by_Google(text);
+				speech.say_VN_by_Microsoft(text);
 				return;
 
 		try:
 			use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[1]/div/div[1]/div/div[2]/div/div[1]/h2/span/span/a')
 			text = use.text
 		except:
-			speech.say_VN_by_Google(text);
+			speech.say_VN_by_Microsoft(text);
 			return;
-		speech.say_VN_by_Google(text);
+		speech.say_VN_by_Microsoft(text);
