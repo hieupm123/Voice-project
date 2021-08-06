@@ -83,6 +83,10 @@ class search_youtube(youtube):
             pass
 
 
+#Thao tac video 
+
+class video(youtube):
+
     def phong_to_nho(self):
         try:
             pause_phong_to_nho = self.trinhduyet.find_element_by_class_name('video-stream')
