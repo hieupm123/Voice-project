@@ -21,12 +21,14 @@ class speech_and_say:
             self.say('Ok i know your name' + name);
 
     def say_VN_by_Google(self,text):
-        global count
-        e = gTTS(text,tld = 'com.vn',lang = 'vi')
-        e.save('voice.mp3')
-        playsound.playsound('voice.mp3')
-        os.remove('voice.mp3')
-        
+        try:
+            e = gTTS(text,tld = 'com.vn',lang = 'vi')
+            e.save('voice.mp3')
+            playsound.playsound('voice.mp3')
+            os.remove('voice.mp3')
+        except:
+            pass
+            
     def say_VN_by_Microsoft(self, text):
         e = pyttsx3.init()
         voice_VN_id = ""
@@ -40,14 +42,15 @@ class speech_and_say:
         e.runAndWait()
         
     def speech_none_pause(self):
+        text = '';
         sp = speech_recognition.Recognizer();
         with speech_recognition.Microphone() as mic:
             sp.adjust_for_ambient_noise(mic, duration=0.2)
-            audio =sp.record(mic, duration=3)
+            audio = sp.record(mic, duration=3)
         try:
             text = sp.recognize_google(audio,language="vi-VI");
         except:
-            text = "";
+            pass;
         return text;
 
     def speech_with_pause(self):
@@ -57,7 +60,7 @@ class speech_and_say:
         try:
             text = sp.recognize_google(audio,language="vi-VI");
         except:
-            text = ""
+            text = ''
         return text
 
     def say(self,text):

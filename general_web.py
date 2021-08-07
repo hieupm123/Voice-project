@@ -10,8 +10,17 @@ from webdriver_manager.chrome import ChromeDriverManager
 import pyautogui
 from time import sleep
 import pickle
+from pack_and_run import *
 model = pickle.load(open("su_li_so.pkl", 'rb'))
+
+speech = speech_and_say();
+
+def speech_catch_error():
+	text_catch = 'Có gì đó không đúng bạn vui lòng xem lại yêu cầu của mình'
+	speech.say_VN_by_Microsoft(text_catch)
+
 class general_web:
+
 	def lay_ten_nguoi_dung(self):
 		output_check = ''
 		file_check_chrome = open('check_chrome_version.txt','r+');
@@ -71,19 +80,19 @@ class general_web:
 			driver.send_keys(text)
 			time.sleep(randint(1,2))
 		except:
-			pass
+			speech_catch_error()
 
 	def scroll_up(self,driver,len  = 325):
 		try:
 			driver.execute_script("window.scrollTo(0, window.scrollY + " + str(len) + " )")
 		except:
-			pass
+			speech_catch_error()
 
 	def scroll_down(self,driver,len  = 325):
 		try:
 			driver.execute_script("window.scrollTo(0, window.scrollY - " + str(len) + " )")
 		except:
-			pass
+			speech_catch_error()
 
 	def get_number(self, text):
 		try:

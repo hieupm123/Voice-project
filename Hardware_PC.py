@@ -7,7 +7,7 @@ import sys
 from datetime import datetime
 import psutil
 import screen_brightness_control as sbc
-from pack_and_run import os,time,schedule
+from pack_and_run import *
 
 # Note: Tất cả các hàm và class có thể gọi = str nên nếu chắc năng nào cần viết nhiều hàm
 # thì chúng ta sẽ gọi hàm = srt
@@ -114,3 +114,5 @@ class Hardware:
 	# Cài đặt độ sáng
 	def screen_brightness_set(self,light):
 		sbc.set_brightness(str(light))
+I = Hardware()
+print(I.get_time());
