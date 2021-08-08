@@ -5,7 +5,7 @@ output_check = general.lay_ten_nguoi_dung()
 
 class Instagram(object):
     browser = None
-
+    # Khởi tạo ins với phần mềm google chrome
     def init(self):
         options =   webdriver.ChromeOptions()
         PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
@@ -15,6 +15,7 @@ class Instagram(object):
         self.browser.get("https://www.instagram.com/")
         time.sleep(randint(1,2));
 
+    # Quay trở lại trang chỉ ins
     def home(self):
         try:
             self.browser.get('https://www.instagram.com/')
@@ -23,7 +24,8 @@ class Instagram(object):
             pass
 
 class operation_ins(Instagram):
-    def type_in_search(self,nhap='cutra04'):
+    # Gõ vào thanh tìm kiếm
+    def type_in_search(self,nhap='Vũ Minh Hiếu'):
         try:
             timkiem = None;
             try:
@@ -36,6 +38,7 @@ class operation_ins(Instagram):
         except:
             pass
 
+    # Chọn phần tử khi tìm kiếm
     def search_by_index(self, id = 0):
         try:
             use = self.browser.find_elements_by_class_name('-qQT3')
@@ -44,6 +47,7 @@ class operation_ins(Instagram):
         except:
             pass
 
+    # Chọn vào la bàn
     def turn_compass(self):
         try:
             self.browser.get('https://www.instagram.com/explore/');
@@ -51,7 +55,9 @@ class operation_ins(Instagram):
         except:
             pass
 
+# Phần class về story
 class story_ins(Instagram):
+    # chọn story
     def chon_video(self, id = 0):
         try:
             use = self.browser.find_elements_by_class_name('_6q-tv')
@@ -61,6 +67,7 @@ class story_ins(Instagram):
             pass
 
 class story_ins_in(Instagram):
+    # Story tiếp theo
     def next_video(self):
         try:
             use = self.browser.find_element_by_class_name('coreSpriteRightChevron')
@@ -69,6 +76,7 @@ class story_ins_in(Instagram):
         except:
             pass
 
+    # Bình luận story
     def comment(self, text = 'Thử comment tý thôi!'):
         try:
             use = self.browser.find_element_by_class_name('Xuckn');
@@ -80,6 +88,7 @@ class story_ins_in(Instagram):
             pass
 class status_ins(Instagram):
 
+    # Hàm này để tìm phần tử nào đang trên màn hình
     def find_index(self):
         click1 = 0; click2 = 0; click3 = 0; click4 = 0
         for i in range(0,350):
@@ -114,6 +123,7 @@ class status_ins(Instagram):
 
         return -10;        
 
+    # thả trái tim trên status không được đổi tên hàm
     def bieu_cam_facebook(self, stt_bieu_cam = 0):
         try:
             stt_bieu_cam = self.find_index();
@@ -123,6 +133,7 @@ class status_ins(Instagram):
         except:
             pass
 
+    # Gõ bình luận status
     def comment(self, text = 'Thử comment nè!'):
         try:
             stt = self.find_index();
@@ -134,7 +145,7 @@ class status_ins(Instagram):
             time.sleep(randint(1,2))
         except:
             pass
-
+    # Lưu bài viết
     def save_and_follow(self, chose = 1):
         try:
             chose = self.find_index();
@@ -144,6 +155,7 @@ class status_ins(Instagram):
             pass
 
 class status_ins_in(Instagram):
+    # Thả biểu cảm khi bên trong status
     def bieu_cam_facebook(self, stt_bieu_cam = 0):
         try:
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/div[1]/article/div[3]/section[1]/span[1]/button');
@@ -152,6 +164,7 @@ class status_ins_in(Instagram):
         except:
             pass
 
+    # comment trong status
     def comment(self, text = 'Thử comment nè!'):
         try:
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/div[1]/article/div[3]/section[3]/div/form/textarea');
@@ -163,6 +176,7 @@ class status_ins_in(Instagram):
         except:
             pass
 
+    # Lưu bài viết
     def save_and_follow(self, chose = 1):
         try:
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/div[1]/article/div[3]/section[1]/span[4]/div/div/button');
@@ -172,7 +186,7 @@ class status_ins_in(Instagram):
             pass
 
 class mess_ins(Instagram):
-
+    # mở message ở trong Instagram
     def message(self):
         try:
             self.browser.get('https://www.instagram.com/direct/inbox/')
@@ -180,6 +194,7 @@ class mess_ins(Instagram):
         except:
             pass
 
+    # Chọn người muốn nhắn tin
     def chon_nguoi_muon_tim(self, id = 0):
         try:
             use = self.browser.find_elements_by_class_name('-qQT3.rOtsg');
@@ -188,6 +203,7 @@ class mess_ins(Instagram):
         except:
             pass
 
+    # nhắn tin với người kia
     def chat(self, text = 'Mình là chatbot xin lỗi đã làm phiền'):
         try:
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div/div[2]/textarea')
