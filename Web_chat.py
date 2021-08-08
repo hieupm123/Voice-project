@@ -29,7 +29,7 @@ class facebook(object):
 		time.sleep(randint(1,2))
 
 	# Quay lại trang chủ facebook
-	def home(self):
+	def home_friend(self):
 		self.driver_web.get("https://www.facebook.com")
 		time.sleep(randint(1,2))
 
@@ -204,7 +204,6 @@ class watch_facebook(facebook):
 					self.driver_web.execute_script('arguments[0].click()',use[i - 1])
 					time.sleep(randint(2,3))
 					button = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[3]/div[3]/div[2]/form/div/div/div[1]/p')
-					time.sleep(randint(1,2))
 					button.send_keys(text)
 					time.sleep(randint(1,2))
 					button.send_keys(Keys.RETURN)
@@ -251,7 +250,7 @@ class watch_facebook(facebook):
 				speech_catch_error()
 				return
 
-	def home(self):
+	def home_watch(self):
 		self.driver_web.get('https://www.facebook.com/watch')
 		time.sleep(randint(1,2))
 

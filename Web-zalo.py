@@ -3,8 +3,6 @@ from general_web import *
 general = general_web()
 output_check = general.lay_ten_nguoi_dung()
 
-
-
 class zalo(object):
 
     trinhduyet = None
@@ -68,7 +66,7 @@ class tim_kiem_zalo(zalo):
 
 class danh_ba_zalo(zalo):
 
-    def mo_danh_ba(self):
+    def home_friend(self):
         try:
             phu_luc = self.trinhduyet.find_elements_by_class_name('internal-icon')
             self.trinhduyet.implicitly_wait(10)
