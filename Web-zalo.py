@@ -283,7 +283,7 @@ class check(zalo):
             return
     
     def check_thong_bao(self):
-        if(self.driver_web == None):
+        if(self.trinhduyet == None):
             try:  
                 options = webdriver.ChromeOptions() 
                 options.add_experimental_option("excludeSwitches", ["enable-logging"])
