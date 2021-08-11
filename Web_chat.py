@@ -8,7 +8,7 @@ speech = speech_and_say();
 
 def speech_catch_error():
 	text_catch = 'Có gì đó không đúng bạn vui lòng xem lại yêu cầu của mình'
-	speech.say_VN_by_Microsoft(text_catch)
+	speech.say_VN_by_Google(text_catch)
 
 class facebook(object): 
 	driver_web = None
@@ -373,7 +373,7 @@ class check_tin_nhan_thong_bao(facebook):
 				text = text.replace('Messenger','Không có tin nhắn mới')
 				text = text.replace('Không có tin nhắn mới,' ,'')
 				driver.quit()
-				speech.say_VN_by_Microsoft(text.strip())
+				speech.say_VN_by_Google(text.strip())
 				return;
 			except:
 				speech_catch_error()
@@ -387,7 +387,7 @@ class check_tin_nhan_thong_bao(facebook):
 		except:
 			speech_catch_error()
 			return;
-		speech.say_VN_by_Microsoft(text)
+		speech.say_VN_by_Google(text)
 
 
 	# Kiếm tra thông báo mới	
@@ -408,7 +408,7 @@ class check_tin_nhan_thong_bao(facebook):
 				text = text.replace('Thông báo','Không có thông báo mới')
 				text = text.replace('Không có thông báo mới,' ,'')
 				driver.quit()
-				speech.say_VN_by_Microsoft(text.strip())
+				speech.say_VN_by_Google(text.strip())
 				return;
 			except:
 				speech_catch_error()
@@ -422,7 +422,7 @@ class check_tin_nhan_thong_bao(facebook):
 		except:
 			speech_catch_error()
 			return;
-		speech.say_VN_by_Microsoft(text)
+		speech.say_VN_by_Google(text)
 
 	
 
@@ -536,16 +536,16 @@ class messenger:
 				use = driver.find_element_by_xpath('/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[1]/div/div[1]/div/div[2]/div/div[1]/h2/span/span/a')
 				text = use.text
 				driver.quit()
-				speech.say_VN_by_Microsoft(text.strip());
+				speech.say_VN_by_Google(text.strip());
 				return;
 			except:
-				speech.say_VN_by_Microsoft(text);
+				speech.say_VN_by_Google(text);
 				return;
 
 		try:
 			use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[1]/div/div[1]/div/div[2]/div/div[1]/h2/span/span/a')
 			text = use.text
 		except:
-			speech.say_VN_by_Microsoft(text);
+			speech.say_VN_by_Google(text);
 			return;
-		speech.say_VN_by_Microsoft(text);
+		speech.say_VN_by_Google(text);

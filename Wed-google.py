@@ -1,5 +1,5 @@
+from os import get_terminal_size
 from general_web import *
-# from pack_and_run import *
 general = general_web()
 output_check = general.lay_ten_nguoi_dung()
 
@@ -7,10 +7,11 @@ speech = speech_and_say();
 
 def speech_catch_error():
     text_catch = 'Có gì đó không đúng bạn vui lòng xem lại yêu cầu của mình'
-    speech.say_VN_by_Microsoft(text_catch)
+    speech.say_VN_by_Google(text_catch)
 
-class google:
-  
+class google(object):
+    driver_web = None;
+
     def init(self):
         try:
             options = webdriver.ChromeOptions()
@@ -21,25 +22,32 @@ class google:
             self.driver_web.get("https://www.google.com/")
             time.sleep(3)
         except:
-            pass
+            speech_catch_error()
 
     def home(self):
-        self.driver_web.get('https://www.google.com/')
-        time.sleep(2)
+        try:
+            self.driver_web.get('https://www.google.com/')
+            time.sleep(2)
+        except:
+            speech_catch_error()
 
     def type_in_search(self,nhap = ''):
         try:
-            search = self.driver_web.find_element_by_xpath('/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input')
-            search.send_keys(nhap)
-            search.send_keys(Keys.RETURN)
+            text_ = speech.speech_none_pause()
+            if(text_ != ''):
+                nhap = text_;
+            self.driver_web.get('https://www.google.com/search?q=' + nhap)
             sleep(2)
         except:
-            pass
+            speech_catch_error()
 
     def select_link(self,a=1):
         try:
+            id = speech.speech_none_pause()
+            a = general.get_number(id)
             chon = self.driver_web.find_elements_by_class_name("LC20lb")
             self.driver_web.implicitly_wait(10)
             ActionChains(self.driver_web).move_to_element(chon[a-1]).click(chon[a-1]).perform()
+            time.sleep(randint(1,2));
         except:
-            pass
+            speech_catch_error()

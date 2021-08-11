@@ -3,6 +3,13 @@ from general_web import *
 general = general_web()
 output_check = general.lay_ten_nguoi_dung()
 
+
+speech = speech_and_say();
+
+def speech_catch_error():
+	text_catch = 'Có gì đó không đúng bạn vui lòng xem lại yêu cầu của mình'
+	speech.say_VN_by_Google(text_catch)
+    
 class Instagram(object):
     browser = None
     # Khởi tạo ins với phần mềm google chrome
@@ -21,31 +28,40 @@ class Instagram(object):
             self.browser.get('https://www.instagram.com/')
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
 class operation_ins(Instagram):
     # Gõ vào thanh tìm kiếm
     def type_in_search(self,nhap='Vũ Minh Hiếu'):
         try:
+            text = speech.speech_none_pause();
+            if(text != ''):
+                nhap = text;
             timkiem = None;
             try:
                 timkiem = self.browser.find_element_by_xpath('//input[@placeholder="Tìm kiếm"]')
             except:
-                timkiem = self.browser.find_element_by_xpath('//input[@placeholder="Search"]')
+                try:
+                    timkiem = self.browser.find_element_by_xpath('//input[@placeholder="Search"]')
+                except:
+                    pass
             timkiem.send_keys(nhap)
             timkiem.send_keys(Keys.RETURN)
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
     # Chọn phần tử khi tìm kiếm
     def search_by_index(self, id = 0):
         try:
+            id_ = speech.speech_none_pause()
+            id = general.get_number(id_)
+            time.sleep(randint(1,2))
             use = self.browser.find_elements_by_class_name('-qQT3')
             self.browser.execute_script("arguments[0].click();",use[id]);
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
     # Chọn vào la bàn
     def turn_compass(self):
@@ -53,18 +69,21 @@ class operation_ins(Instagram):
             self.browser.get('https://www.instagram.com/explore/');
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
 # Phần class về story
 class story_ins(Instagram):
     # chọn story
     def chon_video(self, id = 0):
         try:
+            id_ = speech.speech_none_pause()
+            id = general.get_number(id_)
+            time.sleep(randint(1,2))
             use = self.browser.find_elements_by_class_name('_6q-tv')
             self.browser.execute_script("arguments[0].click();",use[id]);
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
 class story_ins_in(Instagram):
     # Story tiếp theo
@@ -74,18 +93,21 @@ class story_ins_in(Instagram):
             self.browser.execute_script("arguments[0].click();",use);
             time.sleep(randint(1,2)) 
         except:
-            pass
+            speech_catch_error()
 
     # Bình luận story
     def comment(self, text = 'Thử comment tý thôi!'):
         try:
+            nhap = speech.speech_none_pause()
+            if(nhap != ''):
+                text = nhap;
             use = self.browser.find_element_by_class_name('Xuckn');
             use.send_keys(text);
             time.sleep(randint(1,2))
             use.send_keys(Keys.RETURN)
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 class status_ins(Instagram):
 
     # Hàm này để tìm phần tử nào đang trên màn hình
@@ -126,16 +148,21 @@ class status_ins(Instagram):
     # thả trái tim trên status không được đổi tên hàm
     def bieu_cam_facebook(self, stt_bieu_cam = 0):
         try:
+            id = speech.speech_none_pause()
+            stt_bieu_cam = general.get_number(id)
             stt_bieu_cam = self.find_index();
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/section/div[1]/div[2]/div/article[' + str(stt_bieu_cam + 1) + ']/div[3]/section[1]/span[1]/button');
             self.browser.execute_script('arguments[0].click()',use)
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
     # Gõ bình luận status
     def comment(self, text = 'Thử comment nè!'):
         try:
+            text_ = speech.speech_none_pause()
+            if(text_ != ''):
+                text = text
             stt = self.find_index();
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/section/div[1]/div[2]/div/article[' + str(stt + 1) + ']/div[3]/section[3]/div/form/textarea');
             use.send_keys(text);
@@ -144,29 +171,36 @@ class status_ins(Instagram):
             self.browser.execute_script("arguments[0].click();",use)
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
     # Lưu bài viết
     def save_and_follow(self, chose = 1):
         try:
+            text = speech.speech_none_pause()
+            chose = general.get_number(text)
             chose = self.find_index();
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/section/div/div[2]/div/article[' + str(chose + 1) + ']/div[3]/section[1]/span[4]/div/div/button');
             self.browser.execute_script("arguments[0].click();",use)
         except:
-            pass
+            speech_catch_error()
 
 class status_ins_in(Instagram):
     # Thả biểu cảm khi bên trong status
     def bieu_cam_facebook(self, stt_bieu_cam = 0):
         try:
+            id = speech.speech_none_pause()
+            stt_bieu_cam = general.get_number(id)
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/div[1]/article/div[3]/section[1]/span[1]/button');
             self.browser.execute_script('arguments[0].click()',use)
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
     # comment trong status
     def comment(self, text = 'Thử comment nè!'):
         try:
+            text_ =  speech.speech_none_pause()
+            if(text_ != ''):
+                text = text_;
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/div[1]/article/div[3]/section[3]/div/form/textarea');
             use.send_keys(text);
             time.sleep(randint(1,2))
@@ -174,16 +208,18 @@ class status_ins_in(Instagram):
             self.browser.execute_script("arguments[0].click();",use)
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
     # Lưu bài viết
     def save_and_follow(self, chose = 1):
         try:
+            id = speech.speech_none_pause()
+            chose = general.get_number(id)
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/main/div/div[1]/article/div[3]/section[1]/span[4]/div/div/button');
             self.browser.execute_script("arguments[0].click();",use)
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
 class mess_ins(Instagram):
     # mở message ở trong Instagram
@@ -192,24 +228,29 @@ class mess_ins(Instagram):
             self.browser.get('https://www.instagram.com/direct/inbox/')
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
     # Chọn người muốn nhắn tin
     def chon_nguoi_muon_tim(self, id = 0):
         try:
+            text = speech.speech_none_pause()
+            id = general.get_number(text)
             use = self.browser.find_elements_by_class_name('-qQT3.rOtsg');
             self.browser.execute_script('arguments[0].click()',use[id])
             time.sleep(randint(1,2))
         except:
-            pass
+            speech_catch_error()
 
     # nhắn tin với người kia
     def chat(self, text = 'Mình là chatbot xin lỗi đã làm phiền'):
         try:
+            text_ = speech.speech_none_pause()
+            if(text_ != ''):
+                text = text_;
             use = self.browser.find_element_by_xpath('/html/body/div[1]/section/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div/div[2]/textarea')
             use.send_keys(text);
             time.sleep(randint(1,2))
             use.send_keys(Keys.RETURN);
             time.sleep(randint(1,2));
         except:
-            pass
+            speech_catch_error()

@@ -7,7 +7,7 @@ speech = speech_and_say();
 
 def speech_catch_error():
     text_catch = 'Có gì đó không đúng bạn vui lòng xem lại yêu cầu của mình'
-    speech.say_VN_by_Microsoft(text_catch)
+    speech.say_VN_by_Google(text_catch)
 
 class youtube(object):
     trinhduyet = None
@@ -22,65 +22,70 @@ class youtube(object):
             self.trinhduyet.maximize_window() 
             time.sleep(3)
         except:
-            pass  
+            speech_catch_error()  
 
     def home(self):
         try:
             self.trinhduyet.get('https://www.youtube.com/')
             time.sleep(2)
         except:
-                pass
+            speech_catch_error()
 
     def chon_video(self,a=1):
         try:
+            text = speech.speech_none_pause();
+            a = general.get_number(text);
             chon_video_o_trang_chu = self.trinhduyet.find_elements_by_id('content')
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(chon_video_o_trang_chu[a]).click(chon_video_o_trang_chu[a]).perform()
         except:
-            pass
+            speech_catch_error()
 
 class video_kham_pha(youtube):
     def trending(self):
         try:
             self.trinhduyet.get('https://www.youtube.com/feed/trending')
         except:
-            pass
+            speech_catch_error()
 
     def music(self):
         try:
             self.trinhduyet.get('https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ')
         except:
-            pass
+            speech_catch_error()
 
     def gaming(self):
         try:
             self.trinhduyet.get('https://www.youtube.com/gaming')
         except:
-            pass
+            speech_catch_error()
         
     def sports(self):
         try:
             self.trinhduyet.get('https://www.youtube.com/channel/UCEgdi0XIXXZ-qJOFPf4JSKw')
         except:
-            pass
+            speech_catch_error()
 
 class search_youtube(youtube):
 
     def find_video(self,nhap=''):
         try:
-            nhan = self.trinhduyet.find_element_by_xpath('//*[@id="search"]')
-            nhan.send_keys(nhap)
-            nhan.send_keys(Keys.RETURN)
+            text = speech.speech_none_pause()
+            if(text != ''):
+                nhap = text
+            self.trinhduyet.get('https://www.youtube.com/results?search_query=' + nhap);
         except:
-            pass
+            speech_catch_error()
 
     def chon_video(self,a = 1):
         try:
+            id = speech.speech_none_pause();
+            a = general.get_number(id);
             chon = self.trinhduyet.find_elements_by_xpath('//*[@id="video-title"]/yt-formatted-string')
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(chon[a-1]).click(chon[a-1]).perform()
         except:
-            pass
+            speech_catch_error()
 
 
 #Thao tac video 
@@ -97,7 +102,7 @@ class video(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(phong_to_nho).click(phong_to_nho).perform()
         except:
-            pass
+            speech_catch_error()
 
     def bat_tat_che_do_rap_chieu_phim(self):
         try:
@@ -109,7 +114,7 @@ class video(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(che_do_rap_chieu_phim).click(che_do_rap_chieu_phim).perform()
         except:
-            pass
+            speech_catch_error()
 
     def bat_tat_phu_de(self):
         try:
@@ -121,7 +126,7 @@ class video(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(phu_de).click(phu_de).perform()
         except:
-            pass
+            speech_catch_error()
 
     def bat_tat_tu_dong_phat(self):
         try:
@@ -133,7 +138,7 @@ class video(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(tu_dong_phat).click(tu_dong_phat).perform()
         except:
-            pass
+            speech_catch_error()
 
     def tat_mo_tam_dung_video(self):
         try:
@@ -141,7 +146,7 @@ class video(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(pause_pause_video).click(pause_pause_video).perform()
         except:
-            pass
+            speech_catch_error()
 
     def next_video(self):
         try:
@@ -153,7 +158,7 @@ class video(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(video_tiep_theo).click(video_tiep_theo).perform()
         except:
-            pass
+            speech_catch_error()
 
     def bat_tat_loa_video(self):
         try:
@@ -165,7 +170,7 @@ class video(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(am_luong).click(am_luong).perform()
         except:
-            pass
+            speech_catch_error()
 
     def bat_tat_cai_dat(self):
         try:
@@ -181,6 +186,8 @@ class video(youtube):
 
     def chat_luong_video(self,index = 3):
         try:
+            id = speech.speech_none_pause()
+            index = general.get_number(id)
             self.bat_tat_cai_dat();
             # Sử lí giọng nói để lấy chất lượng video
             quality = ['144p','240p','360p','480p','720p','1080p','1440p']
@@ -194,7 +201,7 @@ class video(youtube):
             self.trinhduyet.execute_script("arguments[0].click();",use)
             time.sleep(3)
         except:
-            pass
+            speech_catch_error()
 
 class trinh_phat_thu_nho(youtube):
     def bat_trinh_phat_thu_nho(self):
@@ -207,7 +214,7 @@ class trinh_phat_thu_nho(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(bat_trinh_phat_thu_nho).click(bat_trinh_phat_thu_nho).perform()
         except:
-            pass
+            speech_catch_error()
 
     def next_video(self):
         try:
@@ -219,7 +226,7 @@ class trinh_phat_thu_nho(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(video_tiep_theo_trinh_phat_thu_nho).click(video_tiep_theo_trinh_phat_thu_nho).perform()
         except:
-            pass
+            speech_catch_error()
 
     def tat_mo_tam_dung_video(self):
         try:
@@ -231,7 +238,7 @@ class trinh_phat_thu_nho(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(dung_video_trinh_phat_thu_nho).click(dung_video_trinh_phat_thu_nho).perform()
         except:
-            pass
+            speech_catch_error()
 
     def tat_trinh_phat_thu_nho(self):
         try:
@@ -243,4 +250,4 @@ class trinh_phat_thu_nho(youtube):
             self.trinhduyet.implicitly_wait(10)
             ActionChains(self.trinhduyet).move_to_element(tat_trinh_phat_thu_nho).click(tat_trinh_phat_thu_nho).perform()            
         except:
-            pass
+            speech_catch_error()

@@ -4,6 +4,7 @@ import schedule
 import time,os,string
 import playsound
 from gtts import gTTS 
+import time
 
 # sau này chúng ta sẽ phát triển cái database riêng chứa các nội dung text
 # phát triển chương trình sau random text đồng nghĩa phù hợp 
@@ -23,8 +24,11 @@ class speech_and_say:
     def say_VN_by_Google(self,text):
         try:
             e = gTTS(text,tld = 'com.vn',lang = 'vi')
-            e.save('voice.mp3')
-            playsound.playsound('voice.mp3')
+            try:
+                e.save('voice.mp3')
+                playsound.playsound('voice.mp3')
+            except:
+                pass
             os.remove('voice.mp3')
         except:
             pass
@@ -73,7 +77,7 @@ class speech_and_say:
         def change():
             self.ok = 1
 
-        if(language == 0):
+        if(self.language == 0):
             speech_time_up = 'Đến thời gian nghỉ tay rồi'
             schedule.hour.do(self.say(speech_time_up + self.name) and change)
         else:
