@@ -41,7 +41,55 @@ class tin_nhan_zalo(zalo):
             sleep(1)
         except:
             pass
-        
+
+    def lay_ten_nguoi_gan_nhat(self):
+        if(self.driver_web == None):
+            try:      
+                options = webdriver.ChromeOptions() 
+                options.add_experimental_option("excludeSwitches", ["enable-logging"])
+                PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
+                PATH1 = PATH[:9] + output_check + PATH[9:]
+                options.add_argument("user-data-dir=" + PATH1)
+                self.trinhduyet = webdriver.Chrome(executable_path=r'D:\Laptrinh\test\chromedriver\chromedriver.exe',chrome_options=options)
+                self.trinhduyet.implicitly_wait(20)
+                self.trinhduyet.get('https://id.zalo.me/')
+                sleep(1)
+                tennguoigannhat = self.trinhduyet.find_element_by_xpath('/html/body/div/div/div[2]/nav/div[2]/div[2]/div[3]/div[1]/div/div[1]/div/div[1]/div/div[3]/div[1]/div[1]/span')
+                a = tennguoigannhat.text 
+                # print(a)
+                sleep(1)
+                A.trinhduyet.close()
+                return
+            except:
+                pass
+                return
+        try:
+            tennguoigannhat = self.trinhduyet.find_element_by_xpath('/html/body/div/div/div[2]/nav/div[2]/div[2]/div[3]/div[1]/div/div[1]/div/div[1]/div/div[3]/div[1]/div[1]/span')
+            a = tennguoigannhat.text 
+            # print(a)
+            return
+        except:
+            pass
+            return
+
+    def chat(self,a=''):
+        try:
+            nhantin = self.trinhduyet.find_element_by_id('input_line_0')
+            nhantin.send_keys(a)
+            sleep(1)
+            nhantin.send_keys(Keys.RETURN)
+        except:
+            pass
+    
+    def click_like(self):
+        try:
+            thaicon = self.trinhduyet.find_element_by_class_name('imgHolder')
+            self.trinhduyet.implicitly_wait(10)
+            ActionChains(self.trinhduyet).move_to_element(thaicon).click(thaicon).perform()
+            sleep(1)
+        except:
+            pass
+
 class tim_kiem_zalo(zalo):
 
     def type_in_search(self, nhap=''):
@@ -181,8 +229,14 @@ class cai_dat(zalo):
         except:
             pass
 
-    def dong_cai_dat(self):
-        pass
+    def tat_cai_dat(self):
+        try:
+            tat_cai_dat = self.trinhduyet.find_element_by_class_name('fa-close')
+            self.trinhduyet.implicitly_wait(10)
+            ActionChains(self.trinhduyet).move_to_element(tat_cai_dat).click(tat_cai_dat).perform()
+            sleep(1)
+        except:
+            pass
 
 class tai_khoan(zalo):
 
@@ -207,6 +261,83 @@ class tai_khoan(zalo):
             sleep(1)
         except:
             pass
+
+class check(zalo):
+
+    def check_tin_nhan(self):
+        if(self.driver_web == None):
+            try:      
+                options = webdriver.ChromeOptions() 
+                options.add_experimental_option("excludeSwitches", ["enable-logging"])
+                PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
+                PATH1 = PATH[:9] + output_check + PATH[9:]
+                options.add_argument("user-data-dir=" + PATH1)
+                self.trinhduyet = webdriver.Chrome(executable_path=r'D:\Laptrinh\test\chromedriver\chromedriver.exe',chrome_options=options)
+                self.trinhduyet.implicitly_wait(20)
+                self.trinhduyet.get('https://id.zalo.me/')
+                sleep(3)
+
+                chamdo = self.trinhduyet.find_element_by_xpath('//*[@id="main-tab"]/div[2]/div[2]/div[1]/i[2]')
+                text = chamdo.get_attribute("class")
+                text = text.replace('fa fa-num','Có ')
+                text = text.replace('leftbar-unread unread-red','tin nhắn mới')
+                # print(text)
+                return
+            except:
+                pass# Không có tin nhắn mới
+                return
+        try:
+            chamdo = self.trinhduyet.find_element_by_xpath('//*[@id="main-tab"]/div[2]/div[2]/div[1]/i[2]')
+            text = chamdo.get_attribute("class")
+            text = text.replace('fa fa-num','Có ')
+            text = text.replace('leftbar-unread unread-red','tin nhắn mới')
+            # print(text)
+            return
+        except:
+            pass# Không có tin nhắn mới
+            return
+    
+    def check_thong_bao(self):
+        if(self.driver_web == None):
+            try:  
+                options = webdriver.ChromeOptions() 
+                options.add_experimental_option("excludeSwitches", ["enable-logging"])
+                PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
+                PATH1 = PATH[:9] + output_check + PATH[9:]
+                options.add_argument("user-data-dir=" + PATH1)
+                self.trinhduyet = webdriver.Chrome(executable_path=r'D:\Laptrinh\test\chromedriver\chromedriver.exe',chrome_options=options)
+                self.trinhduyet.implicitly_wait(20)
+                self.trinhduyet.get('https://id.zalo.me/')
+                sleep(3)
+
+                chamcam = self.trinhduyet.find_element_by_xpath('//*[@id="main-tab"]/div[2]/div[2]/div[3]/i[2]')
+                text = chamcam.get_attribute("class")
+                text = text.replace('fa fa-num','Có ')
+                text = text.replace('leftbar-unread unread-orange','thông báo mới')
+                # print(text)
+                return
+            except:
+                pass# Không có thông báo mới
+                return
+        try:
+            chamcam = self.trinhduyet.find_element_by_xpath('//*[@id="main-tab"]/div[2]/div[2]/div[3]/i[2]')
+            text = chamcam.get_attribute("class")
+            text = text.replace('fa fa-num','Có ')
+            text = text.replace('leftbar-unread unread-orange','thông báo mới')
+            # print(text)
+            return
+        except:
+            pass# Không có thông báo mới
+            return
+        
+
+
+
+
+
+
+
+
 
 
 
