@@ -1,0 +1,591 @@
+*
+-facebook
+-Search_in_facebook
+-story_facebook
+-story_facebook_in
+-Friend_facebook
+-watch_facebook
+-watch_facebook_in
+-status_facebook
+-check_tin_nhan_thong_bao
+--init()
+---Khởi tạo facebook
+---facebook
+---mở face
+---mở facebook
+----Tôi sẽ mở facebook
+*
+-facebook
+-Search_in_facebook
+-story_facebook
+-story_facebook_in
+-Friend_facebook
+-watch_facebook
+-watch_facebook_in
+-status_facebook
+-check_tin_nhan_thong_bao
+-Instagram
+-operation_ins
+-story_ins
+-story_ins_in
+-status_ins
+-status_ins_in
+-mess_ins
+-google
+-youtube
+-video_kham_pha
+-search_youtube
+-video
+-trinh_phat_thu_nho
+--home()
+---trang chủ
+---home
+---về trang chủ
+----Okay luôn
+*
+-tim_kiem_zalo
+-operation_ins
+-google
+-Search_in_facebook
+-messenger
+--type_in_search()
+---Tìm kiếm trên thanh tìm kiếm
+---Thanh tìm kiếm
+---Gõ trên thanh tìm kiếm
+---Thanh tìm kiếm
+----Nhập thông tin bạn muốn tìm
+*
+-story_facebook
+-story_facebook_in
+-youtube
+-search_youtube
+-story_ins
+--chon_video()
+---Chọn story
+---Chọn video
+---Vô story
+---Nhấn vào video
+----Thứ tự cái mà bạn muốn xem
+*
+-story_ins_in
+-video
+-trinh_phat_thu_nho
+-story_facebook_in
+--next_video()
+---Video tiếp theo
+---Story tiếp theo
+---Next video
+---Next story
+----Tôi sẽ chuyển hộ bạn
+*
+-story_facebook_in
+-watch_facebook
+--comment()
+---Bình luận
+---comment
+---Thảo luận
+----Nội dung comment của bạn
+*
+-watch_facebook_in
+-watch_facebook
+-status_facebook
+-story_facebook_in
+-status_ins
+-status_ins_in
+--bieu_cam_facebook(stt_bieu_cam = 0)
+---thích
+---Thích luôn
+---like bài viết
+---like
+----Thả luôn cái like
+*
+-watch_facebook_in
+-watch_facebook
+-status_facebook
+-story_facebook_in
+-status_ins
+-status_ins_in
+-messenger
+-tin_nhan_zalo
+--bieu_cam_facebook(stt_bieu_cam = 1)
+---Tim luôn
+---Love
+---Yêu quá
+----Thả luôn cái tim
+*
+-watch_facebook_in
+-watch_facebook
+-status_facebook
+-story_facebook_in
+-status_ins
+-status_ins_in
+-messenger
+-tin_nhan_zalo
+--bieu_cam_facebook(stt_bieu_cam = 2)
+---Thương thương
+---Cute
+---Thương thương hộ
+----Thả luôn cái biểu cảm
+*
+-watch_facebook_in
+-watch_facebook
+-status_facebook
+-story_facebook_in
+-status_ins
+-status_ins_in
+-messenger
+-tin_nhan_zalo
+--bieu_cam_facebook(stt_bieu_cam = 3)
+---haha
+---ngộ nghĩnh thật
+---hài thật
+----Thả luôn cái haha
+*
+-watch_facebook_in
+-watch_facebook
+-status_facebook
+-story_facebook_in
+-status_ins
+-status_ins_in
+-messenger
+-tin_nhan_zalo
+--bieu_cam_facebook(stt_bieu_cam = 4)
+---wow
+---amazing
+---thật ngạc nhiên
+---thật kinh ngạc
+----Thả luôn cái wow
+*
+-watch_facebook_in
+-watch_facebook
+-status_facebook
+-story_facebook_in
+--bieu_cam_facebook(stt_bieu_cam = 5)
+---sad
+---buồn
+---thả sad
+----Thả luôn cái sad
+*
+-watch_facebook_in
+-watch_facebook
+-status_facebook
+-story_facebook_in
+--bieu_cam_facebook(stt_bieu_cam = 6)
+---Phẫn nộ
+---Tức chết
+---Địt con mẹ
+---Vãi lồn
+----Thả luôn cái phẫn nộ
+*
+-danh_ba_zalo
+-Friend_facebook
+--home_friend()
+---Bạn bè
+---Friend
+----Để vào bạn bè
+*
+-Friend_facebook
+-danh_ba_zalo
+--list_friend()
+---list friend
+---danh sách bạn bè
+----Để vào danh sách bạn bè
+*
+-watch_facebook
+-watch_facebook_in
+-trinh_phat_thu_nho
+-video
+--tat_mo_tam_dung_video()
+---Tạm dừng video
+---Pause video
+---Tiếp tục
+---Stop
+---Continue
+----Okay
+*
+-video
+-watch_facebook
+--bat_tat_loa_video()
+---tắt loa video
+---bật loa video
+---volume video
+----Okay
+*
+-status_ins
+-status_ins_in
+-watch_facebook
+-status_facebook
+--save_and_follow(chose = 1)
+---Lưu bài
+---save
+---Lưu lại
+----Okay
+*
+-status_ins
+-status_ins_in
+-watch_facebook
+--save_and_follow(chose = 3)
+---follow
+---theo dõi
+----Okay
+*
+-watch_facebook
+--home_watch()
+---home watch
+---watch
+---cái tivi
+----Okay
+*
+-watch_facebook
+-search_youtube
+--find_video()
+---Tìm kiếm video
+---find video
+---tra video
+----Tên thông tin video bạn muốn tìm
+*
+-check_tin_nhan_thong_bao
+-check
+--check_tin_nhan()
+---Kiểm tra tin nhắn facebook
+---Tin nhắn facebook
+---check tin nhắn
+----Đợi tý lấy tin nhắn
+*
+-check_tin_nhan_thong_bao
+-check
+--check_thong_bao()
+---Thông báo mới
+---Xem thông báo mới
+---Thông báo
+----Đợi tý lấy thông báo
+*
+-messenger
+--init()
+---Khởi tạo messenger
+---Open messenger
+---Mở messenger
+---Messenger
+----Okay luôn bạn
+*
+-tin_nhan_zalo
+-mess_ins
+-operation_ins
+-messenger
+--search_by_index()
+---Chọn bạn theo số thứ tự
+---Chọn người thứ
+---Chat với người thứ
+---Chọn hộ bạn
+----Số thứ tự người bạn muốn chọn
+*
+-messenger
+-mess_ins
+-tin_nhan_zalo
+--chat()
+---Nhắn với người bên kia
+---Nhắn
+---chat
+---trả lời
+---rep
+----Nội dung tin nhắn của bạn
+*
+-messenger
+--call_nor()
+---Gọi điện
+---gọi bình thường
+---call
+---cuộc gọi
+----Tôi sẽ thực hiện cuộc gọi
+*
+-messenger
+--call_vid()
+---gọi có video
+---video call
+---call video
+---cuộc gọi video
+----Tôi sẽ thực hiện cuộc gọi
+*
+-check
+-messenger
+--lay_ten_nguoi_gan_nhat()
+---người nhắn gần nhất
+---người mới nhắn
+---Xem ai mới nhắn
+---ai
+----Đợi tý lấy thông tin
+*
+-Hardware
+--change_volume(ok = 0)
+---tăng âm lượng
+---big volume
+---to âm lượng
+----Okay
+*
+-Hardware
+--change_volume(ok = 1)
+---giảm âm lượng
+---small volume
+---bé âm lượng
+----Okay
+*
+-Hardware
+--change_unikey()
+---đổi unikey
+---unikey
+---Tiếng Việt
+---Tiếng Anh
+----đổi luôn cái unikey
+*
+-Hardware
+--get_time()
+---Xem giờ
+---giờ
+---time
+---thời gian
+---get time
+----Đợi tý lấy thông tin
+*
+-Hardware
+--get_day()
+---Ngày
+---tháng
+---năm
+---get day
+----Đợi tý lấy thông tin
+*
+-Hardware
+--sleep_computer()
+---sleep
+---máy đi ngủ
+----Okay bye
+*
+-Hardware
+--turn_off_computer()
+---Tắt máy
+---turn off computer
+----Okay bye
+*
+-Hardware
+--get_ram()
+---Xem ram
+---get ram
+----Đợi tý lấy thông tin
+*
+-Hardware
+--get_cpu()
+---Xem cpu
+---get cpu
+----Đợi tý lấy thông tin
+*
+-Hardware
+--get_battery()
+---Xem pin
+---get battery
+----Đợi tý lấy thông tin
+*
+-Hardware
+--battery_saving_on()
+---bật tiết kiệm pin
+---save pin
+----Okay luôn
+*
+-Hardware
+--battery_saving_off()
+---tắt tiết kiệm pin
+---turn off save pin
+----Okay luôn
+*
+-Hardware
+--screen_brightness_up()
+---tăng độ sáng
+---light up
+----Okay luôn
+*
+-Hardware
+--screen_brightness_down()
+---giảm độ sáng
+---light down
+----Okay luôn
+*
+-Instagram
+-operation_ins
+-story_ins
+-story_ins_in
+-status_ins
+-status_ins_in
+-mess_ins
+--init()
+---mở instagram
+---khởi tạo instagram
+---vào instagram
+---instagram
+----Okay luôn
+*
+-operation_ins
+--turn_compass()
+---la bàn
+---khám phá
+----Vào khám phá luôn cho bạn
+*
+-mess_ins
+-tin_nhan_zalo
+--message()
+---phần tin nhắn
+---nhắn tin instagram
+---vào nhắn
+----Okay
+*
+-google
+--init()
+---vào google
+---mở google
+---google
+---google
+----Đang mở trình tìm kiếm google
+*
+-youtube
+-video_kham_pha
+-search_youtube
+-video
+-trinh_phat_thu_nho
+--init()
+---vào youtube
+---mở youtube
+---youtube
+---youtube
+----Đang mở trình phát video trực tuyến youtube
+*
+-video_kham_pha
+--trending()
+---trending
+---hot tren
+---hot
+---top
+----Okay
+*
+-video_kham_pha
+--music()
+---music
+---âm nhạc
+----Okay
+*
+-video_kham_pha
+--gaming()
+---gaming
+---game
+---trò chơi
+----Okay
+*
+-video_kham_pha
+--sports()
+---sports
+---thể thao
+----Okay
+*
+-video
+--phong_to_nho()
+---phóng to 
+---thu nhỏ
+---to lên
+---nhỏ xuống
+----Okay
+*
+-video
+--bat_tat_che_do_rap_chieu_phim()
+---chế độ rạp chiếu phim
+---rạp chiếu phim
+----Okay
+*
+-video
+--bat_tat_phu_de()
+---bật phụ đề
+---tắt phụ đề
+---phụ đề
+----Okay
+*
+-video
+--bat_tat_tu_dong_phat()
+---bật tự động phát
+---tắt tự động phát
+---tự động phát
+----Okay
+*
+-video
+--chat_luong_video()
+---chất lượng video
+---thay chất lượng
+----Số thứ tự chất lượng video
+*
+-trinh_phat_thu_nho
+--bat_trinh_phat_thu_nho()
+---bật trình phát thu nhỏ
+----Okay
+*
+-trinh_phat_thu_nho
+--tat_trinh_phat_thu_nho()
+---tắt trình phát thu nhỏ
+----Okay
+*
+-zalo
+-tin_nhan_zalo
+-tim_kiem_zalo
+-danh_ba_zalo
+-to_do
+-cai_dat
+-tai_khoan
+-check
+--init()
+---khởi tạo zalo
+---mở zalo
+---zalo
+----Okay tôi sẽ khởi tạo zalo
+*
+-danh_ba_zalo
+--danh_sach_nhom()
+---danh sách nhóm
+---list group
+----Vào luôn
+*
+-danh_ba_zalo
+--truyen_file()
+---Truyền file
+----Vào truyền file
+*
+-to_do
+--mo_to_do()
+---Vào việc cần làm
+---Mở to do
+----Tôi sẽ mở việc cần làm
+*
+-to_do
+--to_do_toi_giao()
+---Việc được giao
+---tôi giao
+----Tôi sẽ mở việc được giao
+*
+-to_do
+--to_do_chua_xong()
+---việc chưa xong
+---việc cần hoàn thành
+----Tôi sẽ mở những công việc chưa xong
+*
+-to_do
+--to_do_da_xong()
+---việc chưa xong 
+---Việc đã hoàn thành
+----Tôi sẽ mở những công việc đã xong
+*
+-cai_dat
+--mo_cai_dat()
+---Mở phần cài đặt
+---mở cài đặt 
+---mở setting
+----Okay
+*
+-cai_dat
+--tat_cai_dat()
+---Tắt phần cài đặt
+---đóng cài đặt 
+---mở setting
+----Okay
