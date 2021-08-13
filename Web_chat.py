@@ -217,7 +217,8 @@ class watch_facebook(facebook):
 	def bieu_cam_facebook(self,stt_bieu_cam = 0):
 		#Tính từ 0
 		bieu_cam = ['Thích','Yêu thích','Thương thương','Haha','Wow','Buồn','Phẫn nộ']
-		for i in range(1,200):
+		for i in range(1,50):
+			time.sleep(randint(1,2))
 			try:
 				if(self.element_in_viewport(self.browser,self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[4]'))):
 					like = self.browser.find_elements_by_xpath('//div[@aria-label="Thích"]')
@@ -236,8 +237,9 @@ class watch_facebook(facebook):
 	# Lưu và follow
 	def save_and_follow(self,chose = 1):
 		# 1 : save , 3 follow
-		for i in range(1,300):
+		for i in range(1,50):
 			try:
+				time.sleep(randint(1,2))
 				if(self.element_in_viewport(self.browser,self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[4]'))):
 					self.click_to_any_button('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[1]/div[1]/div[3]/div/div')
 					time.sleep(2)
@@ -290,7 +292,8 @@ class status_facebook(facebook):
 	# Tìm số thứ tự của bài
 	def find_index(self):
 		click1 = 0; click2 = 0; click3 = 0; click4 = 0;
-		for i in range(1,350):
+		for i in range(1,50):
+			time.sleep(randint(1,2))
 			try:
 				click1_use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[3]/div/div[4]/div/div[' + str(i) + ']/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div')
 				click1 = self.element_in_viewport(self.browser,click1_use)
@@ -338,7 +341,7 @@ class status_facebook(facebook):
 			return
 
 	# Lưu status
-	def save_and_follow(self):
+	def save_and_follow(self, chose = 1):
 		try:
 			i = self.find_index();
 			time.sleep(randint(1,2))
@@ -501,7 +504,7 @@ class messenger:
 			speech_catch_error()
 
 	# Nhấn vào nút like
-	def click_like(self):
+	def bieu_cam_facebook(self, stt_bieu_cam = 1):
 		try:
 			time.sleep(randint(1,2))
 			use = self.browser.find_element_by_xpath('//div[@aria-label="Gửi lượt thích"]')

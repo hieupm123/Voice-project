@@ -58,7 +58,7 @@ class tin_nhan_zalo(zalo):
         except:
             speech_catch_error()
     
-    def click_like(self):
+    def bieu_cam_facebook(self ,stt_bieu_cam = 1):
         try:
             thaicon = self.browser.find_element_by_class_name('imgHolder')
             self.browser.implicitly_wait(10)
