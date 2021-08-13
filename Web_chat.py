@@ -11,7 +11,7 @@ def speech_catch_error():
 	speech.say_VN_by_Google(text_catch)
 
 class facebook(object): 
-	driver_web = None
+	browser = None
 
 	# Khởi tạo facebook
 	def init(self):
@@ -19,18 +19,18 @@ class facebook(object):
 		PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
 		PATH1 = PATH[:9] + output_check + PATH[9:]
 		options.add_argument("user-data-dir=" + PATH1)
-		self.driver_web = webdriver.Chrome(executable_path=r'./chrome_driver/chromedriver.exe',chrome_options=options)
-		self.driver_web.get("https://www.facebook.com")
+		self.browser = webdriver.Chrome(executable_path=r'./chrome_driver/chromedriver.exe',chrome_options=options)
+		self.browser.get("https://www.facebook.com")
 		time.sleep(3)
 
 
 	def click_to_any_button(self, PATH):
-		self.driver_web.execute_script("arguments[0].click();",self.driver_web.find_element_by_xpath(PATH))
+		self.browser.execute_script("arguments[0].click();",self.browser.find_element_by_xpath(PATH))
 		time.sleep(randint(1,2))
 
 	# Quay lại trang chủ facebook
-	def home_friend(self):
-		self.driver_web.get("https://www.facebook.com")
+	def home(self):
+		self.browser.get("https://www.facebook.com")
 		time.sleep(randint(1,2))
 
 
@@ -67,7 +67,7 @@ class Search_in_facebook(facebook):
 			if(text != ''):
 				name = text;
 			time.sleep(randint(1,2));
-			search_buttons = self.driver_web.find_element_by_xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div/label/input")
+			search_buttons = self.browser.find_element_by_xpath("/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div/label/input")
 			search_buttons.send_keys(name)
 			time.sleep(1)
 			search_buttons.send_keys(Keys.RETURN)
@@ -112,7 +112,7 @@ class story_facebook_in(facebook):
 			text_ = speech.speech_none_pause();
 			if(text_ != ''):
 				text = text_;
-			comment = self.driver_web.find_element_by_xpath('//div[@aria-label="Trả lời..."]');
+			comment = self.browser.find_element_by_xpath('//div[@aria-label="Trả lời..."]');
 			comment.send_keys(text);
 			time.sleep(randint(1,2));
 			comment.send_keys(Keys.RETURN);
@@ -125,11 +125,11 @@ class story_facebook_in(facebook):
 		bieu_cam = ['Thích','Yêu thích','Thương thương','Haha','Wow','Buồn','Phẫn nộ']
 		try:
 			if(stt_bieu_cam == 0):
-				like = self.driver_web.find_elements_by_xpath('//div[@aria-label="' + bieu_cam[stt_bieu_cam] + '"]')
-				ActionChains(self.driver_web).move_to_element(like[0]).click(like[0]).perform()	
+				like = self.browser.find_elements_by_xpath('//div[@aria-label="' + bieu_cam[stt_bieu_cam] + '"]')
+				ActionChains(self.browser).move_to_element(like[0]).click(like[0]).perform()	
 			else:
-				like = self.driver_web.find_elements_by_xpath('//div[@aria-label="' + bieu_cam[stt_bieu_cam] + '"]')
-				ActionChains(self.driver_web).move_to_element(like[0]).click(like[0]).perform()
+				like = self.browser.find_elements_by_xpath('//div[@aria-label="' + bieu_cam[stt_bieu_cam] + '"]')
+				ActionChains(self.browser).move_to_element(like[0]).click(like[0]).perform()
 			time.sleep(randint(1,2));
 		except:
 			speech_catch_error()
@@ -140,13 +140,13 @@ class Friend_facebook(facebook):
 
 
 	# Chuyển sang tab bạn bè
-	def home(self):
-		self.driver_web.get(self.PATH)
+	def home_friend(self):
+		self.browser.get(self.PATH)
 		time.sleep(randint(1,2))
 
 	# Show list friend
 	def list_friend(self):
-		self.driver_web.get(self.PATH + '/list/')
+		self.browser.get(self.PATH + '/list/')
 		time.sleep(randint(1,2))
 
 class watch_facebook(facebook):	
@@ -155,9 +155,9 @@ class watch_facebook(facebook):
 	def tat_mo_tam_dung_video(self):
 		for i in range(1,100):
 			try:
-				use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[5]')
-				if(self.element_in_viewport(self.driver_web,use)):
-					hover = ActionChains(self.driver_web).move_to_element(use);
+				use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[5]')
+				if(self.element_in_viewport(self.browser,use)):
+					hover = ActionChains(self.browser).move_to_element(use);
 					time.sleep(randint(1,2))
 					try:
 						self.click_to_any_button('//div[@aria-label="Tạm dừng"]')
@@ -173,11 +173,11 @@ class watch_facebook(facebook):
 	def bat_tat_loa_video(self):
 		for i in range(1,100):
 			try:
-				use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[5]')
-				if(self.element_in_viewport(self.driver_web,use)):
+				use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[5]')
+				if(self.element_in_viewport(self.browser,use)):
 					time.sleep(randint(1,2))
-					click = self.driver_web.find_elements_by_xpath('//div[@aria-label="Bật tiếng"]')
-					self.driver_web.execute_script('arguments[0].click()',click[i - 1])
+					click = self.browser.find_elements_by_xpath('//div[@aria-label="Bật tiếng"]')
+					self.browser.execute_script('arguments[0].click()',click[i - 1])
 					return
 			except:
 				speech_catch_error()
@@ -192,7 +192,7 @@ class watch_facebook(facebook):
 		if(text_ != ''):
 			text = text_;
 		try:
-			use = self.driver_web.find_elements_by_xpath('//div[@aria-label="Viết bình luận"]')
+			use = self.browser.find_elements_by_xpath('//div[@aria-label="Viết bình luận"]')
 			time.sleep(randint(1,2))
 		except:
 			speech_catch_error()
@@ -200,10 +200,10 @@ class watch_facebook(facebook):
 		for i in range(1,100):
 			try:
 
-				if(self.element_in_viewport(self.driver_web,self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[5]'))):
-					self.driver_web.execute_script('arguments[0].click()',use[i - 1])
+				if(self.element_in_viewport(self.browser,self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[5]'))):
+					self.browser.execute_script('arguments[0].click()',use[i - 1])
 					time.sleep(randint(2,3))
-					button = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[3]/div[3]/div[2]/form/div/div/div[1]/p')
+					button = self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[3]/div[3]/div[2]/form/div/div/div[1]/p')
 					button.send_keys(text)
 					time.sleep(randint(1,2))
 					button.send_keys(Keys.RETURN)
@@ -219,15 +219,15 @@ class watch_facebook(facebook):
 		bieu_cam = ['Thích','Yêu thích','Thương thương','Haha','Wow','Buồn','Phẫn nộ']
 		for i in range(1,200):
 			try:
-				if(self.element_in_viewport(self.driver_web,self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[4]'))):
-					like = self.driver_web.find_elements_by_xpath('//div[@aria-label="Thích"]')
-					hover = ActionChains(self.driver_web).move_to_element(like[i - 1])
+				if(self.element_in_viewport(self.browser,self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[4]'))):
+					like = self.browser.find_elements_by_xpath('//div[@aria-label="Thích"]')
+					hover = ActionChains(self.browser).move_to_element(like[i - 1])
 					time.sleep(randint(1,2))
 					hover.perform()
 					time.sleep(1)
-					like = self.driver_web.find_element_by_xpath('//span[@aria-label="' + bieu_cam[stt_bieu_cam] + '"]')
+					like = self.browser.find_element_by_xpath('//span[@aria-label="' + bieu_cam[stt_bieu_cam] + '"]')
 					time.sleep(randint(1,2))
-					self.driver_web.execute_script("arguments[0].click();",like)
+					self.browser.execute_script("arguments[0].click();",like)
 					return;
 			except:
 				speech_catch_error()
@@ -238,27 +238,27 @@ class watch_facebook(facebook):
 		# 1 : save , 3 follow
 		for i in range(1,300):
 			try:
-				if(self.element_in_viewport(self.driver_web,self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[4]'))):
+				if(self.element_in_viewport(self.browser,self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[4]'))):
 					self.click_to_any_button('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div/div/div/div[' + str(i) + ']/div/div/div/div/div[2]/div[1]/div[1]/div[3]/div/div')
 					time.sleep(2)
-					use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div/div[1]/div/div[' + str(chose) + ']/div[2]/div/div[1]/span')
+					use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div/div[1]/div/div[' + str(chose) + ']/div[2]/div/div[1]/span')
 					if(use.text[0] != 'B'):
 						self.click_to_any_button('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div[1]/div/div[1]/div/div[' + str(chose) + ']')
-						webdriver.ActionChains(self.driver_web).send_keys(Keys.ESCAPE).perform()
+						webdriver.ActionChains(self.browser).send_keys(Keys.ESCAPE).perform()
 					return
 			except:
 				speech_catch_error()
 				return
 
 	def home_watch(self):
-		self.driver_web.get('https://www.facebook.com/watch')
+		self.browser.get('https://www.facebook.com/watch')
 		time.sleep(randint(1,2))
 
 	def find_video(self,text = 'meo'):
 		text_ = speech.speech_none_pause();
 		if(text_ != ''):
 			text = text_
-		self.driver_web.get('https://www.facebook.com/watch/search/?q=' + text)
+		self.browser.get('https://www.facebook.com/watch/search/?q=' + text)
 		time.sleep(randint(1,2))
 
 
@@ -266,7 +266,7 @@ class watch_facebook_in(facebook):
 	# Tạm dừng và tiếp tục khi xem video trong watch
 	def tat_mo_tam_dung_video(self):
 		time.sleep(randint(1,2))
-		ActionChains(self.driver_web).key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
+		ActionChains(self.browser).key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
 
 
 	# Thả biểu cảm khi xem video
@@ -274,9 +274,9 @@ class watch_facebook_in(facebook):
 		#tinh từ 0 là like
 		bieu_cam = ['Thích','Yêu thích','Thương thương','Haha','Wow','Buồn','Phẫn nộ']
 		try:
-			like = self.driver_web.find_element_by_xpath('//div[@aria-label="Thích"]')
+			like = self.browser.find_element_by_xpath('//div[@aria-label="Thích"]')
 			time.sleep(randint(1,2))
-			hover = ActionChains(self.driver_web).move_to_element(like)
+			hover = ActionChains(self.browser).move_to_element(like)
 			time.sleep(randint(1,2))
 			hover.perform()
 			time.sleep(randint(1,2))
@@ -292,26 +292,26 @@ class status_facebook(facebook):
 		click1 = 0; click2 = 0; click3 = 0; click4 = 0;
 		for i in range(1,350):
 			try:
-				click1_use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[3]/div/div[4]/div/div[' + str(i) + ']/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div')
-				click1 = self.element_in_viewport(self.driver_web,click1_use)
+				click1_use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[3]/div/div[4]/div/div[' + str(i) + ']/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div')
+				click1 = self.element_in_viewport(self.browser,click1_use)
 			except:
 				pass
 
 			try:
-				click2_use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[3]/div/div[4]/div/div[' + str(i)+ ']/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[3]/div/div')
-				click2 = self.element_in_viewport(self.driver_web,click2_use)
+				click2_use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[3]/div/div[4]/div/div[' + str(i)+ ']/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[3]/div/div')
+				click2 = self.element_in_viewport(self.browser,click2_use)
 			except:
 				pass
 
 			try:
-				click3_use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[3]/div/div[4]/div/div[' + str(i) + ']/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div')
-				click3 = self.element_in_viewport(self.driver_web,click3_use)
+				click3_use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[3]/div/div[4]/div/div[' + str(i) + ']/div/div/div/div/div/div/div/div/div/div/div[2]/div/div[4]/div/div/div[1]/div')
+				click3 = self.element_in_viewport(self.browser,click3_use)
 			except:
 				pass
 
 			try:
-				click4_use = self.driver_web.find_elements_by_xpath('//div[@aria-label="Thích"]')
-				click4 = self.element_in_viewport(self.driver_web,click4_use[i - 1])
+				click4_use = self.browser.find_elements_by_xpath('//div[@aria-label="Thích"]')
+				click4 = self.element_in_viewport(self.browser,click4_use[i - 1])
 			except:
 				pass
 
@@ -326,13 +326,13 @@ class status_facebook(facebook):
 		
 		try:
 			i = self.find_index()
-			like = self.driver_web.find_elements_by_xpath('//div[@aria-label="Thích"]')
-			hover = ActionChains(self.driver_web).move_to_element(like[i - 1])
+			like = self.browser.find_elements_by_xpath('//div[@aria-label="Thích"]')
+			hover = ActionChains(self.browser).move_to_element(like[i - 1])
 			time.sleep(randint(1,2))
 			hover.perform()
 			time.sleep(2)
-			like = self.driver_web.find_element_by_xpath('//div[@aria-label="' + bieu_cam[stt_bieu_cam] + '"]')
-			self.driver_web.execute_script("arguments[0].click();",like)
+			like = self.browser.find_element_by_xpath('//div[@aria-label="' + bieu_cam[stt_bieu_cam] + '"]')
+			self.browser.execute_script("arguments[0].click();",like)
 		except:
 			speech_catch_error()
 			return
@@ -342,14 +342,14 @@ class status_facebook(facebook):
 		try:
 			i = self.find_index();
 			time.sleep(randint(1,2))
-			save = self.driver_web.find_elements_by_xpath('//div[@aria-label="Hành động với bài viết này"]')
-			self.driver_web.execute_script("arguments[0].click();",save[i - 1])
+			save = self.browser.find_elements_by_xpath('//div[@aria-label="Hành động với bài viết này"]')
+			self.browser.execute_script("arguments[0].click();",save[i - 1])
 			time.sleep(1);
-			save = self.driver_web.find_element_by_xpath('//div[@role="menuitem"]')
-			self.driver_web.execute_script("arguments[0].click();",save)
+			save = self.browser.find_element_by_xpath('//div[@role="menuitem"]')
+			self.browser.execute_script("arguments[0].click();",save)
 			time.sleep(randint(1,2));
-			save = self.driver_web.find_element_by_xpath('//div[@aria-label="Xong"]')
-			self.driver_web.execute_script("arguments[0].click();",save)
+			save = self.browser.find_element_by_xpath('//div[@aria-label="Xong"]')
+			self.browser.execute_script("arguments[0].click();",save)
 			time.sleep(randint(1,2));
 		except:
 			speech_catch_error()
@@ -358,7 +358,7 @@ class check_tin_nhan_thong_bao(facebook):
 	# Kiểm tra tin nhắn mới
 	def check_tin_nhan(self):
 		text = 'Có gì đó không ổn'
-		if(self.driver_web == None):
+		if(self.browser == None):
 			try:
 				options = webdriver.ChromeOptions()
 				PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
@@ -380,7 +380,7 @@ class check_tin_nhan_thong_bao(facebook):
 				return;
 
 		try:
-			use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[2]/div[4]/div[1]/div[2]/span/div/div[1]')
+			use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[2]/div[4]/div[1]/div[2]/span/div/div[1]')
 			text = use.get_attribute("aria-label")
 			text = text.replace('Messenger','Không có tin nhắn mới')
 			text = text.replace('Không có tin nhắn mới,' ,'')
@@ -393,7 +393,7 @@ class check_tin_nhan_thong_bao(facebook):
 	# Kiếm tra thông báo mới	
 	def check_thong_bao(self):
 		text = 'Có gì đó không ổn'
-		if(self.driver_web == None):
+		if(self.browser == None):
 			try:
 				options = webdriver.ChromeOptions()
 				PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
@@ -415,7 +415,7 @@ class check_tin_nhan_thong_bao(facebook):
 				return;
 
 		try:
-			use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[2]/div[4]/div[1]/div[1]/span/div/a')
+			use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[2]/div[4]/div[1]/div[1]/span/div/a')
 			text = use.get_attribute("aria-label")
 			text = text.replace('Thông báo','Không có thông báo mới')
 			text = text.replace('Không có thông báo mới,' ,'')
@@ -429,7 +429,7 @@ class check_tin_nhan_thong_bao(facebook):
 # chức năng về mess
 class messenger:
 
-	driver_web = None
+	browser = None
 
 		
 	def init(self):
@@ -437,8 +437,8 @@ class messenger:
 		PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
 		PATH1 = PATH[:9] + output_check + PATH[9:]
 		options.add_argument("user-data-dir=" + PATH1)
-		self.driver_web = webdriver.Chrome(executable_path=r'./chrome_driver/chromedriver.exe',chrome_options=options)
-		self.driver_web.get("https://www.messenger.com/")
+		self.browser = webdriver.Chrome(executable_path=r'./chrome_driver/chromedriver.exe',chrome_options=options)
+		self.browser.get("https://www.messenger.com/")
 		time.sleep(2)
 
 	# Tìm kiếm bạn bè theo tên trên mess
@@ -448,20 +448,8 @@ class messenger:
 			if(text_ != ''):
 				name = text_;
 			time.sleep(randint(1,2))
-			use = self.driver_web.find_element_by_xpath('//input[@type="search"]')
+			use = self.browser.find_element_by_xpath('//input[@type="search"]')
 			use.send_keys(name)
-			time.sleep(randint(1,2))
-		except:
-			speech_catch_error()
-
-	# Chọn thứ tự người muốn tìm trong danh sách
-	def chon_nguoi_muon_tim(self, id = 0):
-		try:
-			text = speech.speech_none_pause()
-			id = general.get_number(text)
-			time.sleep(randint(1,2))
-			use = self.driver_web.find_elements_by_xpath('//a[@role="presentation"]')
-			self.driver_web.execute_script("arguments[0].click();",use[id])
 			time.sleep(randint(1,2))
 		except:
 			speech_catch_error()
@@ -472,9 +460,9 @@ class messenger:
 			text = speech.speech_none_pause()
 			id = general.get_number(text)
 			time.sleep(randint(1,2))
-			use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div[1]/div[1]/div/div/div/div[3]/div[1]/div[2]/div/div[' + str(id) + ']/div/div/a')
+			use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div[1]/div[1]/div/div/div/div[3]/div[1]/div[2]/div/div[' + str(id) + ']/div/div/a')
 			time.sleep(randint(1,2))
-			self.driver_web.execute_script("arguments[0].click();",use)
+			self.browser.execute_script("arguments[0].click();",use)
 		except:
 			speech_catch_error()	
 
@@ -485,7 +473,7 @@ class messenger:
 			if(text_ != ''):
 				text = text_;
 			time.sleep(randint(1,2))
-			use = self.driver_web.find_element_by_xpath('//div[@role="textbox"]')
+			use = self.browser.find_element_by_xpath('//div[@role="textbox"]')
 			use.send_keys(text)
 			time.sleep(randint(1,2))
 			use.send_keys(Keys.RETURN)
@@ -496,8 +484,8 @@ class messenger:
 	def call_nor(self):
 		try:
 			time.sleep(randint(1,2))
-			use = self.driver_web.find_element_by_xpath('//div[@aria-label="Bắt đầu gọi thoại"]')
-			self.driver_web.execute_script('arguments[0].click()',use)
+			use = self.browser.find_element_by_xpath('//div[@aria-label="Bắt đầu gọi thoại"]')
+			self.browser.execute_script('arguments[0].click()',use)
 			time.sleep(randint(1,2))
 		except:
 			speech_catch_error()
@@ -506,8 +494,8 @@ class messenger:
 	def call_vid(self):
 		try:
 			time.sleep(randint(1,2))
-			use = self.driver_web.find_element_by_xpath('//div[@aria-label="Bắt đầu gọi video"]')
-			self.driver_web.execute_script('arguments[0].click()',use)
+			use = self.browser.find_element_by_xpath('//div[@aria-label="Bắt đầu gọi video"]')
+			self.browser.execute_script('arguments[0].click()',use)
 			time.sleep(randint(1,2))
 		except:
 			speech_catch_error()
@@ -516,15 +504,15 @@ class messenger:
 	def click_like(self):
 		try:
 			time.sleep(randint(1,2))
-			use = self.driver_web.find_element_by_xpath('//div[@aria-label="Gửi lượt thích"]')
-			self.driver_web.execute_script('arguments[0].click()',use)
+			use = self.browser.find_element_by_xpath('//div[@aria-label="Gửi lượt thích"]')
+			self.browser.execute_script('arguments[0].click()',use)
 			time.sleep(randint(1,2))
 		except:
 			speech_catch_error()
 	# Lấy tên người nhắn tin gần nhất
 	def lay_ten_nguoi_gan_nhat(self):
 		text = 'Có gì đó không ổn'
-		if(self.driver_web == None):
+		if(self.browser == None):
 			try:
 				options = webdriver.ChromeOptions()
 				PATH = r"C:\Users\\AppData\Local\Google\Chrome\User Data\Profile 2"
@@ -543,7 +531,7 @@ class messenger:
 				return;
 
 		try:
-			use = self.driver_web.find_element_by_xpath('/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[1]/div/div[1]/div/div[2]/div/div[1]/h2/span/span/a')
+			use = self.browser.find_element_by_xpath('/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[1]/div/div[1]/div/div[2]/div/div[1]/h2/span/span/a')
 			text = use.text
 		except:
 			speech.say_VN_by_Google(text);

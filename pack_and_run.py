@@ -71,29 +71,6 @@ class speech_and_say:
         e = pyttsx3.init();
         e.say(text)
         e.runAndWait()
-
-    def pause(self, defaut):
-        ok = 0
-        def change():
-            self.ok = 1
-
-        if(self.language == 0):
-            speech_time_up = 'Đến thời gian nghỉ tay rồi'
-            schedule.hour.do(self.say(speech_time_up + self.name) and change)
-        else:
-            speech_time_up = 'Time to relax I come back with you' 
-            schedule.hour.do(self.say_VN_by_Microsoft(speech_time_up + self.name) and change)
-
-        schedule.run_pending()
-		
-        while(self.ok != 0):
-            text = self.speech_with_pause();
-            if('On' or 'on' or 'bật' in text):
-                self.say();
-                break
-            elif('Tắt' or 'off' or 'off' in text):
-            	exit()
-            time.sleep(1)
             
             
 

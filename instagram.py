@@ -71,7 +71,7 @@ class operation_ins(Instagram):
         except:
             speech_catch_error()
 
-# Phần class về story
+# Phần clas về story
 class story_ins(Instagram):
     # chọn story
     def chon_video(self, id = 0):
@@ -231,7 +231,7 @@ class mess_ins(Instagram):
             speech_catch_error()
 
     # Chọn người muốn nhắn tin
-    def chon_nguoi_muon_tim(self, id = 0):
+    def search_by_index(self, id = 0):
         try:
             text = speech.speech_none_pause()
             id = general.get_number(text)
